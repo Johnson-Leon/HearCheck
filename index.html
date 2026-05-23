@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字朗读助手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .page-title h1 {
+            color: #333;
+            font-size: 2.5em;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 0 0 480px;
+        }
+
+        .controls-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            padding: 30px 40px;
+        }
+
+
+
+        h1 {
+            color: #333;
+            text-align: center;
+            flex: 1;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .settings-btn {
+            background: #333;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            transition: all 0.3s;
+            font-weight: bold;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .settings-btn:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .start-from-selection-btn {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            padding: 10px 18px;
+            border-radius: 20px;
+            background: rgba(51, 51, 51, 0.9);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: none;
+            border: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-from-selection-btn:hover {
+            background: rgba(0, 0, 0, 0.95);
+            transform: translateY(-1px);
+        }
+
+        .start-from-selection-btn.show {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #999;
+        }
+
+        .voice-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+            flex: 0 0 480px;
+            max-height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        button:disabled:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .btn-primary {
+            background: #333;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: #000;
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #333;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary:disabled {
+            background: #ccc;
+            color: #999;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn-reset {
+            background: #333;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .settings {
+            margin-top: 0;
+        }
+
+        .voice-container .settings {
+            margin-top: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .voice-container .setting-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .setting-group {
+            margin-bottom: 0;
+        }
+
+        .setting-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .setting-group label {
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-weight: bold;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #999;
+        }
+
+        .range-value {
+            display: inline-block;
+            margin-left: 10px;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .voice-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+            max-height: 100%;
+        }
+
+        .voice-tags::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .voice-tags::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .voice-tags::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        .voice-tags::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        .voice-tag {
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #f8f9fa;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 13px;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .voice-tag:hover {
+            border-color: #999;
+            background: #f0f0f0;
+            color: #000;
+        }
+
+        .voice-tag.active {
+            background: #333;
+            border-color: #333;
+            color: white;
+        }
+
+        .voice-tag.active:hover {
+            background: #000;
+            border-color: #000;
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .status.active {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* 设置模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: #333;
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: #f5f5f5;
+            border: 1px solid #d0d0d0;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .close-btn:hover {
+            background: #e0e0e0;
+            border-color: #999;
+        }
+
+        .modal-setting-group {
+            margin-bottom: 25px;
+        }
+
+        .modal-setting-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .voice-checkbox-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .voice-checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .voice-checkbox-item:hover {
+            background: #f5f5f5;
+        }
+
+        .voice-checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .voice-checkbox-item label {
+            cursor: pointer;
+            flex: 1;
+            margin: 0;
+            font-weight: normal;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .default-settings-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .default-setting-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .default-setting-item label {
+            margin: 0;
+            white-space: nowrap;
+            font-size: 14px;
+            min-width: 60px;
+        }
+
+        .default-value-input {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .default-value-input input[type="number"] {
+            width: 60px;
+            padding: 6px 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+        }
+
+        .default-value-input input[type="number"]:focus {
+            outline: none;
+            border-color: #999;
+        }
+
+        .default-value-input span {
+            font-size: 12px;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+        }
+
+        .modal-btn-save {
+            background: #333;
+            color: white;
+        }
+
+        .modal-btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: #000;
+        }
+
+        .modal-btn-cancel {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .modal-btn-cancel:hover {
+            background: #e0e0e0;
+        }
+
+        .select-all-group {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .select-all-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .select-all-btns button {
+            flex: 1;
+            padding: 8px 15px;
+            border: 2px solid #999;
+            border-radius: 8px;
+            background: white;
+            color: #666;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+        }
+
+        .select-all-btns button:hover {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+
+        @media (max-width: 900px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .right-panel {
+                flex: 1;
+                width: 100%;
+            }
+
+            .voice-container {
+                flex: 1;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .voice-tags {
+                justify-content: center;
+            }
+
+            .voice-tag {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-title">
+        <h1>🎙️ 文字朗读助手</h1>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="input-section">
+                <textarea id="textInput" placeholder="请输入要朗读的中文文本..."></textarea>
+                <button class="start-from-selection-btn" id="startFromSelectionBtn">从这开始朗读</button>
+            </div>
+
+            <div class="status" id="status"></div>
+        </div>
+
+        <div class="right-panel">
+            <div class="controls-container">
+                <div class="controls">
+                    <button class="btn-primary" id="speakBtn">开始朗读</button>
+                    <button class="btn-reset" id="resetBtn" disabled>停止</button>
+                    <button class="btn-secondary" id="clearBtn">清空</button>
+                    <button class="btn-secondary" id="copyBtn">复制</button>
+                    <button class="settings-btn" id="settingsBtn">设置</button>
+                </div>
+            </div>
+
+            <div class="voice-container">
+                <div class="settings">
+                    <div class="setting-group">
+                        <label>语音选择:</label>
+                        <div class="voice-tags" id="voiceTags"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设置模态框 -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ 设置</h2>
+            </div>
+
+            <div class="modal-setting-group">
+                <label>显示的声音（可多选）:</label>
+                <div class="select-all-group">
+                    <div class="select-all-btns">
+                        <button id="selectAllBtn">全选</button>
+                        <button id="deselectAllBtn">全不选</button>
+                        <button id="selectChineseBtn">仅中文</button>
+                    </div>
+                </div>
+                <div class="voice-checkbox-list" id="voiceCheckboxList"></div>
+            </div>
+
+            <div class="modal-setting-group">
+                <div class="default-settings-row">
+                    <div class="default-setting-item">
+                        <label>默认语速:</label>
+                        <div class="default-value-input">
+                            <input type="number" id="defaultRate" min="0.5" max="2" step="0.1" value="1.0">
+                            <span>(0.5-2.0)</span>
+                        </div>
+                    </div>
+                    <div class="default-setting-item">
+                        <label>默认音调:</label>
+                        <div class="default-value-input">
+                            <input type="number" id="defaultPitch" min="0.5" max="2" step="0.1" value="1.0">
+                            <span>(0.5-2.0)</span>
+                        </div>
+                    </div>
+                    <div class="default-setting-item">
+                        <label>默认音量:</label>
+                        <div class="default-value-input">
+                            <input type="number" id="defaultVolume" min="0" max="1" step="0.1" value="1.0">
+                            <span>(0.0-1.0)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-btn-save" id="saveSettingsBtn">保存设置</button>
+                <button class="modal-btn-cancel" id="cancelSettingsBtn">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('textInput');
+        const speakBtn = document.getElementById('speakBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const voiceTags = document.getElementById('voiceTags');
+        const status = document.getElementById('status');
+        const startFromSelectionBtn = document.getElementById('startFromSelectionBtn');
+
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsModal = document.getElementById('settingsModal');
+        const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+        const cancelSettingsBtn = document.getElementById('cancelSettingsBtn');
+        const voiceCheckboxList = document.getElementById('voiceCheckboxList');
+        const defaultRate = document.getElementById('defaultRate');
+        const defaultPitch = document.getElementById('defaultPitch');
+        const defaultVolume = document.getElementById('defaultVolume');
+        const selectAllBtn = document.getElementById('selectAllBtn');
+        const deselectAllBtn = document.getElementById('deselectAllBtn');
+        const selectChineseBtn = document.getElementById('selectChineseBtn');
+
+        let synth = window.speechSynthesis;
+        let utterance = null;
+        let selectedVoiceName = null;
+        let allVoicesList = [];
+
+        // 保存设置到 localStorage
+        function saveSettings() {
+            const enabledVoices = Array.from(voiceCheckboxList.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(cb => cb.dataset.voiceName);
+            
+            // 获取当前选择的语音，如果已选择则保留，否则使用保存的设置
+            const currentSettings = loadSettings() || {};
+            const currentSelectedVoice = selectedVoiceName || currentSettings.selectedVoice;
+            
+            const settings = {
+                enabledVoices: enabledVoices,
+                defaultRate: parseFloat(defaultRate.value),
+                defaultPitch: parseFloat(defaultPitch.value),
+                defaultVolume: parseFloat(defaultVolume.value),
+                selectedVoice: currentSelectedVoice // 保留当前选择的语音
+            };
+            
+            localStorage.setItem('ttsSettings', JSON.stringify(settings));
+            return settings;
+        }
+
+        // 从 localStorage 加载设置
+        function loadSettings() {
+            const saved = localStorage.getItem('ttsSettings');
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    console.error('Failed to parse settings:', e);
+                }
+            }
+            return null;
+        }
+
+        // 加载设置到模态框
+        function loadSettingsToModal(settings) {
+            if (settings) {
+                defaultRate.value = settings.defaultRate || 1.0;
+                defaultPitch.value = settings.defaultPitch || 1.0;
+                defaultVolume.value = settings.defaultVolume || 1.0;
+                
+                // 恢复复选框状态
+                if (settings.enabledVoices) {
+                    voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                        cb.checked = settings.enabledVoices.includes(cb.dataset.voiceName);
+                    });
+                }
+            }
+        }
+
+        // 应用默认设置到界面（现在只需要加载到设置模态框）
+        function applyDefaultSettings(settings) {
+            // 设置会在打开设置模态框时自动加载，这里不需要额外操作
+        }
+
+        // 加载可用的语音到设置模态框
+        function loadVoicesToModal() {
+            const voices = synth.getVoices();
+            voiceCheckboxList.innerHTML = '';
+            allVoicesList = voices;
+            
+            // 优先显示中文语音
+            const chineseVoices = voices.filter(voice => 
+                voice.lang.includes('zh') || voice.lang.includes('CN') || voice.lang.includes('TW')
+            );
+            
+            const otherVoices = voices.filter(voice => 
+                !voice.lang.includes('zh') && !voice.lang.includes('CN') && !voice.lang.includes('TW')
+            );
+
+            // 合并语音列表，中文优先
+            const allVoices = [...chineseVoices, ...otherVoices];
+
+            // 创建复选框
+            allVoices.forEach(voice => {
+                const item = document.createElement('div');
+                item.className = 'voice-checkbox-item';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `voice-${voice.name.replace(/\s/g, '-')}`;
+                checkbox.dataset.voiceName = voice.name;
+                checkbox.checked = true; // 默认全选
+                
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.textContent = `${voice.name} (${voice.lang})`;
+                
+                item.appendChild(checkbox);
+                item.appendChild(label);
+                voiceCheckboxList.appendChild(item);
+            });
+
+            // 加载保存的设置
+            const settings = loadSettings();
+            loadSettingsToModal(settings);
+        }
+
+        // 加载可用的语音（用于主界面显示）
+        function loadVoices() {
+            const voices = synth.getVoices();
+            voiceTags.innerHTML = '';
+            
+            // 获取保存的设置
+            const settings = loadSettings();
+            const enabledVoices = settings && settings.enabledVoices ? settings.enabledVoices : null;
+            
+            // 优先显示中文语音
+            const chineseVoices = voices.filter(voice => {
+                const isChinese = voice.lang.includes('zh') || voice.lang.includes('CN') || voice.lang.includes('TW');
+                return isChinese && (enabledVoices === null || enabledVoices.includes(voice.name));
+            });
+            
+            const otherVoices = voices.filter(voice => {
+                const isNotChinese = !voice.lang.includes('zh') && !voice.lang.includes('CN') && !voice.lang.includes('TW');
+                return isNotChinese && (enabledVoices === null || enabledVoices.includes(voice.name));
+            });
+
+            // 合并语音列表，中文优先
+            const allVoices = [...chineseVoices, ...otherVoices];
+
+            if (allVoices.length === 0) {
+                voiceTags.innerHTML = '<div style="color: #999; padding: 10px;">没有可用的语音，请在设置中选择要显示的声音</div>';
+                return;
+            }
+
+            // 获取保存的语音选择
+            const savedSettings = loadSettings();
+            const savedVoiceName = savedSettings && savedSettings.selectedVoice ? savedSettings.selectedVoice : null;
+            
+            // 创建标签按钮
+            allVoices.forEach((voice, index) => {
+                const tag = document.createElement('div');
+                tag.className = 'voice-tag';
+                tag.textContent = voice.name;
+                tag.dataset.voiceName = voice.name;
+                tag.dataset.voiceLang = voice.lang;
+                
+                // 检查是否应该选中这个语音
+                let shouldSelect = false;
+                if (savedVoiceName && savedVoiceName === voice.name) {
+                    // 如果保存的语音存在，选择它
+                    shouldSelect = true;
+                    selectedVoiceName = voice.name;
+                } else if (!savedVoiceName && index === 0) {
+                    // 如果没有保存的语音，默认选择第一个
+                    shouldSelect = true;
+                    selectedVoiceName = voice.name;
+                }
+                
+                if (shouldSelect) {
+                    tag.classList.add('active');
+                }
+                
+                tag.addEventListener('click', () => {
+                    // 移除所有活动状态
+                    document.querySelectorAll('.voice-tag').forEach(t => t.classList.remove('active'));
+                    // 添加当前活动状态
+                    tag.classList.add('active');
+                    selectedVoiceName = voice.name;
+                    
+                    // 保存选择的语音到 localStorage
+                    const currentSettings = loadSettings() || {};
+                    currentSettings.selectedVoice = voice.name;
+                    localStorage.setItem('ttsSettings', JSON.stringify(currentSettings));
+                });
+                
+                voiceTags.appendChild(tag);
+            });
+        }
+
+        // 页面加载时加载语音
+        if (synth.onvoiceschanged !== undefined) {
+            synth.onvoiceschanged = () => {
+                loadVoices();
+                loadVoicesToModal();
+            };
+        }
+        loadVoices();
+        
+        // 延迟加载模态框中的语音列表（等待语音加载完成）
+        setTimeout(() => {
+            loadVoicesToModal();
+        }, 500);
+
+        // 应用默认设置
+        const savedSettings = loadSettings();
+        if (savedSettings) {
+            applyDefaultSettings(savedSettings);
+        }
+
+        // 保存和恢复输入框高度
+        function saveTextareaHeight() {
+            const height = textInput.offsetHeight;
+            localStorage.setItem('textareaHeight', height.toString());
+        }
+
+        function loadTextareaHeight() {
+            const savedHeight = localStorage.getItem('textareaHeight');
+            if (savedHeight) {
+                textInput.style.height = savedHeight + 'px';
+            }
+        }
+
+        // 页面加载时恢复高度
+        loadTextareaHeight();
+
+        // 监听输入框大小变化
+        let resizeTimer;
+        const resizeObserver = new ResizeObserver(() => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                saveTextareaHeight();
+            }, 300); // 防抖，300ms后保存
+        });
+
+        resizeObserver.observe(textInput);
+
+        function startSpeech(text, options = {}) {
+            const displayText = text.trim();
+
+            if (!displayText) {
+                status.textContent = options.errorMessage || '⚠️ 请输入要朗读的文本';
+                status.className = 'status error';
+                return;
+            }
+
+            synth.cancel();
+
+            const settings = loadSettings();
+
+            utterance = new SpeechSynthesisUtterance(displayText);
+
+            const selectedVoice = synth.getVoices().find(voice => voice.name === selectedVoiceName);
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+                utterance.lang = selectedVoice.lang;
+            } else {
+                utterance.lang = 'zh-CN';
+            }
+
+            utterance.rate = settings && settings.defaultRate ? parseFloat(settings.defaultRate) : 1.0;
+            utterance.pitch = settings && settings.defaultPitch ? parseFloat(settings.defaultPitch) : 1.0;
+            utterance.volume = settings && settings.defaultVolume ? parseFloat(settings.defaultVolume) : 1.0;
+
+            utterance.onstart = () => {
+                status.textContent = options.startMessage || '🔊 正在朗读...';
+                status.className = 'status active';
+                speakBtn.disabled = true;
+                resetBtn.disabled = false;
+            };
+
+            utterance.onend = () => {
+                status.textContent = '✅ 朗读完成';
+                status.className = 'status';
+                speakBtn.disabled = false;
+                resetBtn.disabled = true;
+            };
+
+            utterance.onerror = (event) => {
+                if (event.error !== 'interrupted') {
+                    status.textContent = '❌ 朗读出错: ' + event.error;
+                    status.className = 'status error';
+                } else {
+                    status.textContent = '';
+                    status.className = 'status';
+                }
+                speakBtn.disabled = false;
+                resetBtn.disabled = true;
+            };
+
+            synth.speak(utterance);
+        }
+
+        speakBtn.addEventListener('click', () => {
+            startSpeech(textInput.value, {
+                errorMessage: '⚠️ 请输入要朗读的文本',
+                startMessage: '🔊 正在朗读...'
+            });
+        });
+
+        // 停止朗读
+        resetBtn.addEventListener('click', () => {
+            synth.cancel();
+            status.textContent = '⏹️ 已停止';
+            status.className = 'status';
+            speakBtn.disabled = false;
+            resetBtn.disabled = true;
+        });
+
+        // 复制文本
+        copyBtn.addEventListener('click', async () => {
+            const text = textInput.value.trim();
+            
+            if (!text) {
+                status.textContent = '⚠️ 没有内容可复制';
+                status.className = 'status error';
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(text);
+                status.textContent = '✅ 已复制到剪贴板';
+                status.className = 'status active';
+                
+                // 2秒后清除提示
+                setTimeout(() => {
+                    if (status.textContent === '✅ 已复制到剪贴板') {
+                        status.textContent = '';
+                        status.className = 'status';
+                    }
+                }, 2000);
+            } catch (error) {
+                console.error('复制失败:', error);
+                // 降级方案：使用传统的复制方法
+                try {
+                    textInput.select();
+                    document.execCommand('copy');
+                    status.textContent = '✅ 已复制到剪贴板';
+                    status.className = 'status active';
+                    
+                    setTimeout(() => {
+                        if (status.textContent === '✅ 已复制到剪贴板') {
+                            status.textContent = '';
+                            status.className = 'status';
+                        }
+                    }, 2000);
+                } catch (fallbackError) {
+                    status.textContent = '❌ 复制失败';
+                    status.className = 'status error';
+                }
+            }
+        });
+
+        let lastSelectionStart = null;
+
+        function updateSelectionButton() {
+            const selectionStart = textInput.selectionStart;
+            const selectionEnd = textInput.selectionEnd;
+            const hasContent = textInput.value.trim().length > 0;
+
+            if (!hasContent || selectionStart === null || selectionEnd === null) {
+                startFromSelectionBtn.classList.remove('show');
+                return;
+            }
+
+            if (selectionEnd > selectionStart) {
+                lastSelectionStart = selectionStart;
+                startFromSelectionBtn.classList.add('show');
+            } else {
+                lastSelectionStart = selectionStart;
+                startFromSelectionBtn.classList.add('show');
+            }
+        }
+
+        function hideSelectionButton() {
+            startFromSelectionBtn.classList.remove('show');
+        }
+
+        textInput.addEventListener('mouseup', () => {
+            setTimeout(updateSelectionButton, 0);
+        });
+
+        textInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Shift' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+                setTimeout(updateSelectionButton, 0);
+            }
+        });
+
+        textInput.addEventListener('select', updateSelectionButton);
+        textInput.addEventListener('blur', () => {
+            setTimeout(hideSelectionButton, 150);
+        });
+
+        startFromSelectionBtn.addEventListener('click', () => {
+            const sourceText = textInput.value;
+            if (!sourceText.trim()) {
+                status.textContent = '⚠️ 请输入要朗读的文本';
+                status.className = 'status error';
+                return;
+            }
+
+            const startIndex = lastSelectionStart !== null ? lastSelectionStart : textInput.selectionStart || 0;
+            const textToSpeak = sourceText.slice(startIndex);
+
+            startSpeech(textToSpeak, {
+                errorMessage: '⚠️ 请输入要朗读的文本',
+                startMessage: '🔊 从选定位置开始朗读...'
+            });
+
+            textInput.focus();
+            hideSelectionButton();
+        });
+
+        // 更新按钮状态
+        function updateButtonStates() {
+            const hasContent = textInput.value.trim().length > 0;
+            copyBtn.disabled = !hasContent;
+            clearBtn.disabled = !hasContent;
+        }
+
+        // 初始化按钮状态
+        updateButtonStates();
+
+        // 监听输入框内容变化
+        textInput.addEventListener('input', updateButtonStates);
+
+        // 清空文本
+        clearBtn.addEventListener('click', () => {
+            textInput.value = '';
+            textInput.focus();
+            status.textContent = '';
+            status.className = 'status';
+            updateButtonStates(); // 更新按钮状态
+        });
+
+        // 设置按钮事件
+        settingsBtn.addEventListener('click', () => {
+            loadVoicesToModal();
+            settingsModal.classList.add('show');
+        });
+
+        // 关闭模态框
+        function closeModal() {
+            settingsModal.classList.remove('show');
+        }
+
+        cancelSettingsBtn.addEventListener('click', closeModal);
+
+        // 点击模态框外部关闭
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                closeModal();
+            }
+        });
+
+        // 保存设置
+        saveSettingsBtn.addEventListener('click', () => {
+            const settings = saveSettings();
+            applyDefaultSettings(settings);
+            loadVoices(); // 重新加载显示的语音
+            closeModal();
+            
+            // 显示保存成功提示
+            status.textContent = '✅ 设置已保存';
+            status.className = 'status active';
+            setTimeout(() => {
+                status.textContent = '';
+                status.className = 'status';
+            }, 2000);
+        });
+
+        // 全选/取消全选
+        selectAllBtn.addEventListener('click', () => {
+            voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = true;
+            });
+        });
+
+        deselectAllBtn.addEventListener('click', () => {
+            voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+        });
+
+        selectChineseBtn.addEventListener('click', () => {
+            voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                const lang = cb.closest('.voice-checkbox-item').querySelector('label').textContent;
+                const isChinese = lang.includes('zh') || lang.includes('CN') || lang.includes('TW');
+                cb.checked = isChinese;
+            });
+        });
+
+        // 键盘快捷键：Ctrl+Enter 开始朗读，Esc 停止
+        textInput.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                speakBtn.click();
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                if (settingsModal.classList.contains('show')) {
+                    closeModal();
+                } else {
+                    resetBtn.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
