@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>HearCheck - 免费在线文字转语音工具 | 创作者稿件审核助手</title>
-    <meta name="description" content="HearCheck 是一款极简的文字转语音工具，帮助创作者通过听的方式审核稿件。支持多种中文语音，完全免费，无需注册，基于微软 Azure TTS 技术。">
-    <meta name="keywords" content="文字转语音,TTS,语音合成,稿件审核,朗读工具,文本朗读,在线TTS,免费TTS,创作者工具,HearCheck">
-    <meta name="author" content="HearCheck">
+    <title>听稿 - 免费在线文字转语音工具 | 创作者稿件审核助手</title>
+    <meta name="description" content="听稿是一款极简的文字转语音工具，帮助创作者通过听的方式审核稿件。支持多种中文语音，完全免费，无需注册，基于 Web Speech API。">
+    <meta name="keywords" content="文字转语音,TTS,语音合成,稿件审核,朗读工具,文本朗读,在线TTS,免费TTS,创作者工具,听稿">
+    <meta name="author" content="听稿">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hearcheck.407183993.workers.dev/">
-    <meta property="og:title" content="HearCheck - 免费在线文字转语音工具">
+    <meta property="og:title" content="听稿 - 免费在线文字转语音工具">
     <meta property="og:description" content="极简的文字转语音工具，帮助创作者通过听的方式审核稿件。支持多种中文语音，完全免费。">
-    <meta property="og:site_name" content="HearCheck">
+    <meta property="og:site_name" content="听稿">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://hearcheck.407183993.workers.dev/">
-    <meta property="twitter:title" content="HearCheck - 免费在线文字转语音工具">
+    <meta property="twitter:title" content="听稿 - 免费在线文字转语音工具">
     <meta property="twitter:description" content="极简的文字转语音工具，帮助创作者通过听的方式审核稿件。">
 
     <!-- Canonical URL -->
@@ -40,32 +40,55 @@
             font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
             background: #f5f5f5;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
         }
 
-        .page-title {
-            text-align: center;
-            margin-bottom: 30px;
-            width: 100%;
+        .page-container {
             max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .page-title {
+            flex: 1;
+            text-align: center;
         }
 
         .page-title h1 {
             color: #333;
-            font-size: 2.5em;
+            font-size: 2em;
             font-weight: 600;
             margin: 0;
+            letter-spacing: 2px;
+        }
+
+        /* Language Switcher - Dropdown Style */
+        .language-switcher {
+            flex: 0 0 auto;
+        }
+
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
         }
 
         .wrapper {
             display: flex;
             gap: 20px;
-            max-width: 1400px;
             width: 100%;
-            align-items: flex-start;
+            align-items: stretch;
+        }
+
+        .left-panel {
+            flex: 1;
+            min-width: 0;
         }
 
         .container {
@@ -74,8 +97,9 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border: 1px solid #e0e0e0;
             padding: 40px;
-            flex: 1;
-            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .right-panel {
@@ -93,44 +117,49 @@
             padding: 30px 40px;
         }
 
+        /* Browser Recommendation */
+        .browser-tip {
+            display: none !important;
+        }
 
-
-        h1 {
-            color: #333;
+        /* Footer */
+        .footer {
             text-align: center;
-            flex: 1;
-            font-size: 2.5em;
-            font-weight: 600;
+            color: #999;
+            font-size: 13px;
+            padding-bottom: 20px;
+            margin-top: 40px;
         }
 
-        .settings-btn {
-            background: #333;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 25px;
-            font-size: 16px;
-            cursor: pointer;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
-            transition: all 0.3s;
-            font-weight: bold;
-            flex: 1;
-            min-width: 120px;
+        .footer > div {
+            margin-bottom: 5px;
         }
 
-        .settings-btn:hover {
-            background: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .footer > div:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        .footer-divider {
+            margin: 0 8px;
+            color: #ccc;
         }
 
         .input-section {
-            margin-bottom: 30px;
+            margin-bottom: 0;
             position: relative;
         }
+
         .start-from-selection-btn {
             position: absolute;
             right: 20px;
@@ -161,7 +190,7 @@
 
         textarea {
             width: 100%;
-            min-height: 300px;
+            min-height: 400px;
             padding: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
@@ -183,10 +212,26 @@
             border: 1px solid #e0e0e0;
             padding: 40px;
             flex: 0 0 480px;
-            max-height: calc(100vh - 40px);
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+        }
+
+        /* 浏览器提示 */
+        .browser-tip-voice {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .browser-tip-voice.show {
+            display: block;
         }
 
         .controls {
@@ -269,19 +314,13 @@
 
         .voice-container .settings {
             margin-top: 0;
-            flex: 1;
             display: flex;
             flex-direction: column;
-            min-height: 0;
-            overflow: hidden;
         }
 
         .voice-container .setting-group {
-            flex: 1;
             display: flex;
             flex-direction: column;
-            min-height: 0;
-            overflow: hidden;
         }
 
         .setting-group {
@@ -296,6 +335,37 @@
             margin-bottom: 10px;
             font-size: 15px;
             color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .more-voices-link {
+            font-size: 13px;
+            color: #666;
+            font-weight: normal;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .more-voices-link:hover {
+            background: #333;
+            color: white;
+            border-color: #333;
+            transform: translateY(-1px);
+        }
+
+        .more-voices-link::before {
+            content: '⚙️';
+            font-size: 12px;
         }
 
         label {
@@ -332,9 +402,7 @@
             gap: 8px;
             margin-top: 10px;
             overflow-y: auto;
-            flex: 1;
-            min-height: 0;
-            max-height: 100%;
+            max-height: 360px;
         }
 
         .voice-tags::-webkit-scrollbar {
@@ -387,23 +455,86 @@
             border-color: #000;
         }
 
-        .status {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 14px;
+        /* 右键菜单样式 */
+        .context-menu {
+            position: fixed;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 4px 0;
+            z-index: 10000;
+            display: none;
+            min-width: 120px;
+        }
+
+        .context-menu.show {
+            display: block;
+        }
+
+        .context-menu-item {
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #333;
+            transition: all 0.2s;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+        }
+
+        .context-menu-item:hover {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .context-menu-item.danger {
             color: #666;
         }
 
-        .status.active {
-            background: #e8f5e9;
-            color: #2e7d32;
+        .context-menu-item.danger:hover {
+            background: #f0f0f0;
+            color: #000;
         }
 
-        .status.error {
-            background: #ffebee;
-            color: #c62828;
+        .status {
+            display: none;
+        }
+
+        /* Toast 弹窗样式 */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .toast.error {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .toast.info {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
         }
 
         /* 设置模态框 */
@@ -428,7 +559,7 @@
         .modal-content {
             background: white;
             border-radius: 20px;
-            padding: 30px;
+            padding: 22px 25px 25px 25px;
             max-width: 900px;
             width: 100%;
             max-height: 90vh;
@@ -437,13 +568,119 @@
             position: relative;
         }
 
+        /* 信息模态框（关于、联系、隐私）使用新的布局 */
+        .modal-content.info {
+            padding: 0;
+            max-width: 750px;
+            display: flex;
+            flex-direction: column;
+        }
+
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            padding: 25px 0px 18px 25px;
             border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 15px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .modal-body {
+            padding: 10px 25px 25px 25px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        .modal-content h3 {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .modal-content p {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .modal-content ul {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 15px;
+            padding-left: 25px;
+            font-size: 14px;
+        }
+
+        .modal-content li {
+            margin-bottom: 10px;
+        }
+
+        .modal-content a {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        .modal-content a:hover {
+            color: #000;
+        }
+
+        .modal-content .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            font-size: 28px;
+            color: #999;
+            cursor: pointer;
+            width: auto;
+            height: auto;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .modal-content .close-btn:hover {
+            color: #333;
+            background: transparent;
+            transform: none;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
         }
 
         .modal-header h2 {
@@ -466,6 +703,7 @@
             justify-content: center;
             padding: 0;
             flex-shrink: 0;
+            margin-right: -10px;
         }
 
         .close-btn:hover {
@@ -474,12 +712,13 @@
         }
 
         .modal-setting-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .modal-setting-group label {
             display: block;
-            margin-bottom: 10px;
+            margin-top: 5px;
+            margin-bottom: 12px;
             color: #333;
             font-weight: bold;
             font-size: 16px;
@@ -572,8 +811,8 @@
         .modal-actions {
             display: flex;
             gap: 15px;
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 20px;
+            padding-top: 18px;
             border-top: 2px solid #e0e0e0;
         }
 
@@ -615,6 +854,168 @@
             border-bottom: 1px solid #e0e0e0;
         }
 
+        .language-filter-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            height: 300px;
+        }
+
+        .language-list-panel {
+            flex: 0 0 180px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .language-list-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .language-list-panel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .language-list-panel::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        .language-list-panel::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        .language-list-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #e0e0e0;
+            transition: all 0.2s;
+            font-size: 13px;
+            color: #333;
+            user-select: none;
+        }
+
+        .language-list-item:hover {
+            background: #e8e8e8;
+        }
+
+        .language-list-item.active {
+            background: #333;
+            color: white;
+        }
+
+        .language-list-item.has-selection {
+            font-weight: bold;
+            position: relative;
+        }
+
+        .language-list-item.has-selection::after {
+            content: '●';
+            position: absolute;
+            right: 10px;
+            color: #666;
+        }
+
+        .language-list-item.active.has-selection::after {
+            color: #333;
+        }
+
+        .voice-selection-panel {
+            flex: 1;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow-y: auto;
+            background: white;
+            padding: 15px;
+        }
+
+        .voice-selection-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .voice-selection-panel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .voice-selection-panel::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        .voice-selection-panel::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        .voice-selection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .voice-selection-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .voice-selection-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .voice-action-btn {
+            padding: 5px 12px;
+            border: 1px solid #999;
+            border-radius: 5px;
+            background: white !important;
+            color: #333 !important;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .voice-action-btn:hover {
+            background: #333 !important;
+            color: white !important;
+            border-color: #333;
+        }
+
+        .voice-checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .voice-checkbox-item:hover {
+            background: #f5f5f5;
+        }
+
+        .voice-checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .voice-checkbox-item label {
+            cursor: pointer;
+            flex: 1;
+            margin: 0;
+            font-weight: normal;
+            font-size: 14px;
+            color: #666;
+        }
+
         .select-all-btns {
             display: flex;
             gap: 10px;
@@ -644,6 +1045,10 @@
                 flex-direction: column;
             }
 
+            .left-panel {
+                width: 100%;
+            }
+
             .right-panel {
                 flex: 1;
                 width: 100%;
@@ -652,17 +1057,87 @@
             .voice-container {
                 flex: 1;
                 width: 100%;
+                max-height: 400px;
+            }
+
+            .language-filter-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .language-list-panel {
+                flex: 0 0 auto;
+                max-height: 150px;
+                width: 100%;
+            }
+
+            .voice-selection-panel {
+                flex: 1;
+                min-height: 300px;
             }
         }
 
+        .language-dropdown select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding: 6px 30px 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            color: #666;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 400;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .language-dropdown select:hover {
+            border-color: #999;
+            color: #333;
+        }
+
+        .language-dropdown select:focus {
+            border-color: #666;
+        }
+
+        .language-dropdown::after {
+            content: '▼';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #999;
+            font-size: 10px;
+        }
+
+        .browser-tip.show {
+            display: block;
+        }
+
         @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .page-container {
+                padding: 0;
+            }
+
+            .page-title h1 {
+                font-size: 1.5em;
+            }
+
             .container {
                 padding: 20px;
                 max-width: 100%;
             }
 
-            h1 {
-                font-size: 1.8em;
+            .controls-container {
+                padding: 20px;
             }
 
             .controls {
@@ -682,71 +1157,119 @@
                 padding: 6px 12px;
             }
 
-            .header {
-                flex-direction: column;
-                gap: 15px;
-            }
-
             .modal-content {
                 padding: 20px;
+                max-width: 95%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="page-title">
-        <h1>🎙️ 文字朗读助手</h1>
-    </div>
-
-    <div class="wrapper">
-        <div class="container">
-            <div class="input-section">
-                <textarea id="textInput" placeholder="请输入要朗读的中文文本..."></textarea>
-                <button class="start-from-selection-btn" id="startFromSelectionBtn">从这开始朗读</button>
+    <div class="page-container">
+        <div class="page-header">
+            <div class="page-title">
+                <h1 data-i18n="pageTitle">听稿</h1>
             </div>
-
-            <div class="status" id="status"></div>
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <div class="language-dropdown">
+                    <select id="languageSelect">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
-        <div class="right-panel">
-            <div class="controls-container">
-                <div class="controls">
-                    <button class="btn-primary" id="speakBtn">开始朗读</button>
-                    <button class="btn-reset" id="resetBtn" disabled>停止</button>
-                    <button class="btn-secondary" id="clearBtn">清空</button>
-                    <button class="btn-secondary" id="copyBtn">复制</button>
-                    <button class="settings-btn" id="settingsBtn">设置</button>
+        <div class="wrapper">
+            <div class="left-panel">
+                <div class="container">
+                    <div class="input-section">
+                        <textarea id="textInput" placeholder="请输入要朗读的中文文本..."></textarea>
+                        <button class="start-from-selection-btn" id="startFromSelectionBtn">从这开始朗读</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="voice-container">
-                <div class="settings">
-                    <div class="setting-group">
-                        <label>语音选择:</label>
-                        <div class="voice-tags" id="voiceTags"></div>
+            <div class="right-panel">
+                <div class="controls-container">
+                    <div class="controls">
+                        <button class="btn-secondary" id="uploadBtn">上传文件</button>
+                        <button class="btn-primary" id="speakBtn">开始朗读</button>
+                        <button class="btn-reset" id="resetBtn" disabled>停止</button>
+                        <button class="btn-secondary" id="copyBtn">复制</button>
+                        <button class="btn-secondary" id="clearBtn">清空</button>
+                        <input type="file" id="fileInput" accept=".txt,.md" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="voice-container">
+                    <div class="settings">
+                        <div class="setting-group">
+                            <label>
+                                <span data-i18n="voiceLabel">语音选择:</span>
+                                <span class="more-voices-link"
+                                      id="moreVoicesLink"
+                                      data-i18n="voiceLabelHint">更多</span>
+                            </label>
+                            <div class="voice-tags" id="voiceTags"></div>
+                        </div>
+                    </div>
+                    <div class="browser-tip-voice" id="browserTipVoice">
+                        <span id="browserTipVoiceText"></span>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Browser Recommendation -->
+        <div class="browser-tip" id="browserTip">
+            <span id="browserTipText"></span>
+        </div>
+
+        <!-- Context Menu -->
+        <div class="context-menu" id="contextMenu">
+            <div class="context-menu-item danger" id="contextMenuRemove" data-i18n="contextMenuRemove">移除</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div id="footerCopyright">© 2026 听稿 | 基于 Web Speech API</div>
+            <div>
+                <a href="#" id="aboutLink">关于</a>
+                <span class="footer-divider">|</span>
+                <a href="#" id="contactLink">联系我们</a>
+                <span class="footer-divider">|</span>
+                <a href="#" id="privacyLink">隐私政策</a>
+            </div>
+        </div>
     </div>
+
+    <!-- Toast 弹窗 -->
+    <div class="toast" id="toast"></div>
 
     <!-- 设置模态框 -->
     <div class="modal" id="settingsModal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2>⚙️ 设置</h2>
-            </div>
-
             <div class="modal-setting-group">
                 <label>显示的声音（可多选）:</label>
                 <div class="select-all-group">
-                    <div class="select-all-btns">
-                        <button id="selectAllBtn">全选</button>
-                        <button id="deselectAllBtn">全不选</button>
-                        <button id="selectChineseBtn">仅中文</button>
+                    <div class="language-filter-container">
+                        <div class="language-list-panel" id="languageListPanel">
+                            <!-- 语言列表将动态生成 -->
+                        </div>
+                        <div class="voice-selection-panel" id="voiceSelectionPanel">
+                            <div class="voice-selection-header">
+                                <span class="voice-selection-title" id="voiceSelectionTitle">请选择语言</span>
+                                <div class="voice-selection-actions">
+                                    <button class="voice-action-btn" id="selectAllCurrentBtn" style="display: none; background: white; color: #333;">全选</button>
+                                    <button class="voice-action-btn" id="deselectAllCurrentBtn" style="display: none; background: white; color: #333;">全部取消</button>
+                                </div>
+                            </div>
+                            <div id="voiceCheckboxList"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="voice-checkbox-list" id="voiceCheckboxList"></div>
             </div>
 
             <div class="modal-setting-group">
@@ -782,17 +1305,247 @@
         </div>
     </div>
 
+    <!-- 关于模态框 -->
+    <div class="modal" id="aboutModal">
+        <div class="modal-content info">
+            <div class="modal-header">
+                <h2 id="aboutModalTitle">关于听稿</h2>
+                <button class="close-btn" id="closeAboutBtn">×</button>
+            </div>
+            <div class="modal-body" id="aboutModalContent">
+                <h3>产品介绍</h3>
+                <p>听稿是专为内容创作者设计的在线文字转语音工具，帮助你通过"听"的方式审核稿件，提高审稿效率。</p>
+
+                <h3>核心功能</h3>
+                <ul>
+                    <li><strong>在线朗读</strong>：无需下载，支持多种语音</li>
+                    <li><strong>选中位置朗读</strong>：从任意位置开始，无需从头听起</li>
+                    <li><strong>完全免费</strong>：无需注册登录</li>
+                </ul>
+
+                <h3>技术说明</h3>
+                <p>本工具基于 <strong>Web Speech API</strong>（W3C 开放标准）实现。<strong>所有语音合成在浏览器本地完成，文本内容不会上传到我们的服务器。</strong></p>
+                <p>推荐使用 <strong>Microsoft Edge 浏览器</strong>以获得更自然的语音效果。</p>
+
+                <h3>免责声明</h3>
+                <ul>
+                    <li><strong>语音服务提供方：</strong>语音由您的浏览器提供（如 Edge、Chrome 等），我们仅调用浏览器 API</li>
+                    <li><strong>服务质量：</strong>语音质量和可用性取决于浏览器，我们不对此承担责任</li>
+                    <li><strong>用户责任：</strong>请勿输入违法、侵权或不当内容</li>
+                </ul>
+
+                <h3>知识产权</h3>
+                <p>Web Speech API 是开放标准，可供任何网站免费使用。语音合成由浏览器厂商提供，相关权利归各厂商所有。<strong>本工具不存储、录制或分发任何语音文件。</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系我们模态框 -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content info">
+            <div class="modal-header">
+                <h2 id="contactModalTitle">联系我们</h2>
+                <button class="close-btn" id="closeContactBtn">×</button>
+            </div>
+            <div class="modal-body" id="contactModalContent">
+                <p>感谢您使用听稿！如果您有任何问题、建议或反馈，欢迎通过以下方式联系我们：</p>
+
+                <h3>电子邮件</h3>
+                <p>📧 <a href="mailto:lijz1750@gmail.com">lijz1750@gmail.com</a></p>
+
+                <p>我们会尽快回复您的邮件。您的反馈对我们非常重要，帮助我们不断改进产品！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 隐私政策模态框 -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-content info">
+            <div class="modal-header">
+                <h2 id="privacyModalTitle">隐私政策</h2>
+                <button class="close-btn" id="closePrivacyBtn">×</button>
+            </div>
+            <div class="modal-body" id="privacyModalContent">
+                <p><strong>最后更新：2026年5月</strong></p>
+
+                <h3>1. 信息收集</h3>
+                <p><strong>我们不收集您的文本内容。</strong>所有文字转语音处理都在您的浏览器本地完成，文本内容不会离开您的设备。</p>
+
+                <h3>2. 本地存储</h3>
+                <p>我们仅在您的浏览器本地保存以下设置（语音选择、语速/音调/音量、界面语言、输入框高度）。<strong>这些数据存储在您的设备上，我们无法访问。</strong>您可随时通过清除浏览器数据删除。</p>
+
+                <h3>3. 第三方服务</h3>
+                <p><strong>重要：</strong>语音合成由您的浏览器提供（如 Edge、Chrome 等）。<strong>您的文本可能被发送到浏览器厂商的服务器进行处理，我们无法控制他们如何处理这些数据。</strong></p>
+                <p>如关注隐私，请查阅：<a href="https://privacy.microsoft.com/" target="_blank" rel="noopener">Microsoft 隐私声明</a> | <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a></p>
+
+                <h3>4. 数据安全</h3>
+                <p>文本内容不会传输到我们的服务器。我们不使用 Cookies、不使用分析工具、不追踪用户行为、不收集个人信息、不与第三方共享数据。</p>
+
+                <h3>5. 免责声明</h3>
+                <p>本工具仅提供技术接口，实际语音服务由浏览器厂商提供。<strong>我们不对以下内容承担责任：</strong></p>
+                <ul>
+                    <li>浏览器厂商对您文本的处理方式</li>
+                    <li>语音合成的质量或可用性</li>
+                    <li>因使用本服务产生的任何损失</li>
+                </ul>
+
+                <h3>6. 联系我们</h3>
+                <p>📧 <a href="mailto:lijz1750@gmail.com">lijz1750@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // ==================== 多语言翻译对象（必须在最前面定义）====================
+        const translations = {
+            zh: {
+                pageTitle: '听稿',
+                textareaPlaceholder: '请输入要朗读的文本...',
+                startFromSelection: '从这开始朗读',
+                speakBtn: '开始朗读',
+                stopBtn: '停止',
+                clearBtn: '清空',
+                copyBtn: '复制全部',
+                uploadBtn: '上传文件',
+                voiceLabel: '语音选择:',
+                voiceLabelHint: '更多',
+                settingsTitle: '设置',
+                voiceDisplayLabel: '显示的声音（可多选）:',
+                selectAll: '全选',
+                deselectAll: '全不选',
+                selectAllCurrent: '全选语音',
+                deselectAllCurrent: '取消全部',
+                showAll: '显示全部',
+                pleaseSelectLanguage: '请选择语言',
+                defaultRate: '语速:',
+                defaultPitch: '音调:',
+                defaultVolume: '音量:',
+                saveSettings: '保存设置',
+                cancelSettings: '取消',
+                statusEmpty: '⚠️ 请输入要朗读的文本',
+                statusSpeaking: '🔊 正在朗读...',
+                statusComplete: '✅ 朗读完成',
+                statusStopped: '⏹️ 已停止',
+                statusCopied: '✅ 已复制到剪贴板',
+                statusCopyFailed: '❌ 复制失败',
+                statusNoCopy: '⚠️ 没有内容可复制',
+                statusCleared: '✅ 已清空',
+                statusSaved: '✅ 设置已保存',
+                statusFromSelection: '🔊 从选定位置开始朗读...',
+                noVoices: '没有可用的语音，请在设置中选择要显示的声音',
+                browserTip: '使用 Edge 浏览器可获得更好的语音效果',
+                browserTipVoice: '💡 提示：Edge 浏览器的语音更自然流畅',
+                metaTitle: '听稿 - 免费在线文字转语音工具 | 创作者稿件审核助手',
+                metaDescription: '听稿是一款极简的文字转语音工具，帮助创作者通过听的方式审核稿件。支持多种中文语音，完全免费，无需注册，基于 Web Speech API。',
+                footerCopyright: '© 2026 听稿 | 基于 Web Speech API',
+                footerAbout: '关于',
+                footerContact: '联系我们',
+                footerPrivacy: '隐私政策',
+                aboutModalTitle: '关于听稿',
+                contactModalTitle: '联系我们',
+                privacyModalTitle: '隐私政策',
+                confirmRemoveVoice: '确定要移除这个声音吗？',
+                removeVoiceButton: '删除',
+                contextMenuRemove: '移除',
+                voiceRemoved: '✅ 声音已移除',
+                importSuccess: '✅ 文件导入成功',
+                importError: '❌ 文件导入失败',
+                importUnsupported: '❌ 不支持的文件格式，请选择 .txt 或 .md 文件',
+                importTooLarge: '❌ 文件过大，请选择小于 2MB 的文件',
+                confirmOverwrite: '输入框中已有内容，上传文件将覆盖现有内容。是否继续？'
+            },
+            en: {
+                pageTitle: 'HearCheck',
+                textareaPlaceholder: 'Enter text to read aloud...',
+                startFromSelection: 'Start from here',
+                speakBtn: 'Start',
+                stopBtn: 'Stop',
+                clearBtn: 'Clear',
+                copyBtn: 'Copy All',
+                uploadBtn: 'Upload',
+                voiceLabel: 'Voice Selection:',
+                voiceLabelHint: 'More',
+                settingsTitle: '⚙️ Settings',
+                voiceDisplayLabel: 'Display Voices (Multiple):',
+                selectAll: 'Select All',
+                deselectAll: 'Deselect All',
+                selectAllCurrent: 'Select All',
+                deselectAllCurrent: 'Deselect All',
+                showAll: 'Show All',
+                pleaseSelectLanguage: 'Please select a language',
+                defaultRate: 'Rate:',
+                defaultPitch: 'Pitch:',
+                defaultVolume: 'Volume:',
+                saveSettings: 'Save',
+                cancelSettings: 'Cancel',
+                statusEmpty: '⚠️ Please enter text to read',
+                statusSpeaking: '🔊 Speaking...',
+                statusComplete: '✅ Complete',
+                statusStopped: '⏹️ Stopped',
+                statusCopied: '✅ Copied to clipboard',
+                statusCopyFailed: '❌ Copy failed',
+                statusNoCopy: '⚠️ No content to copy',
+                statusCleared: '✅ Cleared',
+                statusSaved: '✅ Settings saved',
+                statusFromSelection: '🔊 Starting from selection...',
+                noVoices: 'No voices available. Please select voices in settings.',
+                browserTip: '',
+                browserTipVoice: '💡 Tip: Edge browser offers more natural voices',
+                metaTitle: 'HearCheck - Free Online Text to Speech Tool | Creator Draft Review Assistant',
+                metaDescription: 'HearCheck is a minimalist text-to-speech tool that helps creators review their drafts by listening. Supports multiple voices, completely free, no registration required, powered by Web Speech API.',
+                footerCopyright: '© 2026 HearCheck | Powered by Web Speech API',
+                footerAbout: 'About',
+                footerContact: 'Contact Us',
+                footerPrivacy: 'Privacy Policy',
+                aboutModalTitle: 'About HearCheck',
+                contactModalTitle: 'Contact Us',
+                privacyModalTitle: 'Privacy Policy',
+                confirmRemoveVoice: 'Are you sure you want to remove this voice?',
+                removeVoiceButton: 'Del',
+                contextMenuRemove: 'Remove',
+                voiceRemoved: '✅ Voice removed',
+                importSuccess: '✅ File imported successfully',
+                importError: '❌ File import failed',
+                importUnsupported: '❌ Unsupported file format, please select .txt or .md file',
+                importTooLarge: '❌ File too large, please select a file smaller than 2MB',
+                confirmOverwrite: 'The text box already has content. Uploading a file will overwrite the existing content. Continue?'
+            }
+        };
+
         const textInput = document.getElementById('textInput');
         const speakBtn = document.getElementById('speakBtn');
         const resetBtn = document.getElementById('resetBtn');
         const copyBtn = document.getElementById('copyBtn');
         const clearBtn = document.getElementById('clearBtn');
         const voiceTags = document.getElementById('voiceTags');
-        const status = document.getElementById('status');
+        const toast = document.getElementById('toast');
         const startFromSelectionBtn = document.getElementById('startFromSelectionBtn');
 
-        const settingsBtn = document.getElementById('settingsBtn');
+        // "更多"链接点击事件
+        const moreVoicesLink = document.getElementById('moreVoicesLink');
+        if (moreVoicesLink) {
+            moreVoicesLink.addEventListener('click', () => {
+                loadVoicesToModal();
+                settingsModal.classList.add('show');
+            });
+        }
+
+        // Toast 提示函数
+        function showToast(message, type = 'info', duration = 2000) {
+            toast.textContent = message;
+            toast.className = 'toast ' + type;
+
+            // 显示 Toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+
+            // 自动隐藏
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
         const settingsModal = document.getElementById('settingsModal');
         const saveSettingsBtn = document.getElementById('saveSettingsBtn');
         const cancelSettingsBtn = document.getElementById('cancelSettingsBtn');
@@ -800,32 +1553,39 @@
         const defaultRate = document.getElementById('defaultRate');
         const defaultPitch = document.getElementById('defaultPitch');
         const defaultVolume = document.getElementById('defaultVolume');
-        const selectAllBtn = document.getElementById('selectAllBtn');
-        const deselectAllBtn = document.getElementById('deselectAllBtn');
-        const selectChineseBtn = document.getElementById('selectChineseBtn');
+        const languageListPanel = document.getElementById('languageListPanel');
+        const voiceSelectionPanel = document.getElementById('voiceSelectionPanel');
+        const voiceSelectionTitle = document.getElementById('voiceSelectionTitle');
+        const selectAllCurrentBtn = document.getElementById('selectAllCurrentBtn');
+        const deselectAllCurrentBtn = document.getElementById('deselectAllCurrentBtn');
+
+        let currentSelectedLanguage = 'all'; // 当前选中的语言
+        let voiceSelectionState = {}; // 记录每个语音的选中状态
 
         let synth = window.speechSynthesis;
         let utterance = null;
         let selectedVoiceName = null;
         let allVoicesList = [];
+        let availableLanguages = new Set(); // 存储所有可用的语言
 
         // 保存设置到 localStorage
         function saveSettings() {
-            const enabledVoices = Array.from(voiceCheckboxList.querySelectorAll('input[type="checkbox"]:checked'))
-                .map(cb => cb.dataset.voiceName);
-            
+            // 从 voiceSelectionState 获取所有选中的语音
+            const enabledVoices = Object.keys(voiceSelectionState).filter(voiceName => voiceSelectionState[voiceName]);
+
             // 获取当前选择的语音，如果已选择则保留，否则使用保存的设置
             const currentSettings = loadSettings() || {};
             const currentSelectedVoice = selectedVoiceName || currentSettings.selectedVoice;
-            
+
             const settings = {
                 enabledVoices: enabledVoices,
                 defaultRate: parseFloat(defaultRate.value),
                 defaultPitch: parseFloat(defaultPitch.value),
                 defaultVolume: parseFloat(defaultVolume.value),
-                selectedVoice: currentSelectedVoice // 保留当前选择的语音
+                selectedVoice: currentSelectedVoice,
+                selectedLanguages: null // 不再需要保存语言筛选，因为我们保存的是具体的语音
             };
-            
+
             localStorage.setItem('ttsSettings', JSON.stringify(settings));
             return settings;
         }
@@ -849,13 +1609,7 @@
                 defaultRate.value = settings.defaultRate || 1.0;
                 defaultPitch.value = settings.defaultPitch || 1.0;
                 defaultVolume.value = settings.defaultVolume || 1.0;
-                
-                // 恢复复选框状态
-                if (settings.enabledVoices) {
-                    voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                        cb.checked = settings.enabledVoices.includes(cb.dataset.voiceName);
-                    });
-                }
+                // 语音选中状态已经在 loadVoicesToModal 中处理
             }
         }
 
@@ -864,89 +1618,853 @@
             // 设置会在打开设置模态框时自动加载，这里不需要额外操作
         }
 
+        // 翻译语音名称
+        function translateVoiceName(voiceName, currentLang) {
+            let translatedName = voiceName;
+
+            if (currentLang === 'zh') {
+                // 中文界面：翻译成中文
+
+                // 移除可能包含的英文语言描述（如 "- Chinese (Simplified, PRC)"）
+                translatedName = translatedName.replace(/\s*-\s*Chinese\s*\([^)]+\)/gi, '');
+                translatedName = translatedName.replace(/\s*-\s*English\s*\([^)]+\)/gi, '');
+                translatedName = translatedName.replace(/\s*-\s*[A-Za-z]+\s*\([^)]+\)/g, '');
+
+                // 翻译品牌名
+                translatedName = translatedName.replace(/Microsoft/g, '微软');
+                translatedName = translatedName.replace(/Google/g, '谷歌');
+
+                // 翻译人名 - 注意顺序很重要，长的名字要先匹配
+                translatedName = translatedName.replace(/Huihui/g, '慧慧');
+                translatedName = translatedName.replace(/Kangkang/g, '康康');
+                translatedName = translatedName.replace(/Yaoyao/g, '瑶瑶');
+                translatedName = translatedName.replace(/Yunjian/g, '云健');
+                translatedName = translatedName.replace(/HiuGaai/g, '晓佳');
+                translatedName = translatedName.replace(/HiuMaan/g, '晓曼');
+                translatedName = translatedName.replace(/WanLung/g, '云龙');
+                translatedName = translatedName.replace(/Xiaoxiao/g, '晓晓');
+                translatedName = translatedName.replace(/Xiaoyi/g, '晓伊');
+                translatedName = translatedName.replace(/Yunxia/g, '云霞');  // 云霞要在云希之前
+                translatedName = translatedName.replace(/Yunxi/g, '云希');
+                translatedName = translatedName.replace(/Yunyang/g, '云扬');
+                translatedName = translatedName.replace(/Xiaobei/g, '晓北');
+                translatedName = translatedName.replace(/HsiaoChen/g, '晓臻');
+                translatedName = translatedName.replace(/YunJhe/g, '云哲');
+                translatedName = translatedName.replace(/HsiaoYu/g, '晓雨');
+                translatedName = translatedName.replace(/Xiaoni/g, '晓妮');
+                translatedName = translatedName.replace(/Yunze/g, '云泽');
+
+                // 翻译语言名称（各种语言的本地名称）- 只在中文界面翻译
+                translatedName = translatedName.replace(/普通话/g, '普通话');
+                translatedName = translatedName.replace(/粤語/g, '粤语');
+                translatedName = translatedName.replace(/國語/g, '国语');
+                translatedName = translatedName.replace(/español de Estados Unidos/gi, '西班牙语（美国）');
+                translatedName = translatedName.replace(/español/gi, '西班牙语');
+                translatedName = translatedName.replace(/français/gi, '法语');
+                translatedName = translatedName.replace(/Deutsch/gi, '德语');
+                translatedName = translatedName.replace(/italiano/gi, '意大利语');
+                translatedName = translatedName.replace(/português/gi, '葡萄牙语');
+                translatedName = translatedName.replace(/русский/gi, '俄语');
+                translatedName = translatedName.replace(/日本語/gi, '日语');
+                translatedName = translatedName.replace(/한국어/gi, '韩语');
+                translatedName = translatedName.replace(/polski/gi, '波兰语');
+                translatedName = translatedName.replace(/हिन्दी/gi, '印地语');
+
+                // 翻译常见词汇
+                translatedName = translatedName.replace(/Online/g, '在线');
+                translatedName = translatedName.replace(/Natural/g, '自然');
+                translatedName = translatedName.replace(/\(Natural\)/g, '（自然）');
+                translatedName = translatedName.replace(/Female/g, '女声');
+                translatedName = translatedName.replace(/Male/g, '男声');
+                translatedName = translatedName.replace(/US English/gi, '美国英语');
+                translatedName = translatedName.replace(/UK English/gi, '英国英语');
+
+                // 翻译地区名称
+                translatedName = translatedName.replace(/liaoning/gi, '辽宁');
+                translatedName = translatedName.replace(/shaanxi/gi, '陕西');
+
+                // 清理多余的空格和连字符
+                translatedName = translatedName.replace(/\s*-\s*$/g, '').trim();
+
+            } else {
+                // 英文界面：将中文语言名称翻译成英文
+
+                // 翻译中文语言描述为英文
+                translatedName = translatedName.replace(/普通话\s*\(中国大陆\)/g, 'Mandarin (Mainland China)');
+                translatedName = translatedName.replace(/普通话\s*（中国大陆）/g, 'Mandarin (Mainland China)');
+                translatedName = translatedName.replace(/普通话/g, 'Mandarin');
+
+                translatedName = translatedName.replace(/粤語\s*\(香港\)/g, 'Cantonese (Hong Kong)');
+                translatedName = translatedName.replace(/粤語\s*（香港）/g, 'Cantonese (Hong Kong)');
+                translatedName = translatedName.replace(/粤語/g, 'Cantonese');
+                translatedName = translatedName.replace(/粤语/g, 'Cantonese');
+
+                translatedName = translatedName.replace(/國語\s*\(臺灣\)/g, 'Mandarin (Taiwan)');
+                translatedName = translatedName.replace(/國語\s*（臺灣）/g, 'Mandarin (Taiwan)');
+                translatedName = translatedName.replace(/國語\s*\(台湾\)/g, 'Mandarin (Taiwan)');
+                translatedName = translatedName.replace(/國語\s*（台湾）/g, 'Mandarin (Taiwan)');
+                translatedName = translatedName.replace(/國語/g, 'Mandarin');
+                translatedName = translatedName.replace(/国语/g, 'Mandarin');
+
+                // 翻译其他可能的中文地区描述
+                translatedName = translatedName.replace(/中国大陆/g, 'Mainland China');
+                translatedName = translatedName.replace(/香港/g, 'Hong Kong');
+                translatedName = translatedName.replace(/臺灣/g, 'Taiwan');
+                translatedName = translatedName.replace(/台湾/g, 'Taiwan');
+
+                // 清理多余的空格
+                translatedName = translatedName.replace(/\s+/g, ' ').trim();
+            }
+
+            return translatedName;
+        }
+
+        // 翻译语音的语言标签
+        function translateVoiceLang(langCode, currentLang) {
+            const langTranslations = {
+                zh: {
+                    'zh-CN': '中文（简体，中国）',
+                    'zh-CN-liaoning': '中文（简体，中国，辽宁）',
+                    'zh-CN-shaanxi': '中文（简体，中国，陕西）',
+                    'zh-TW': '中文（繁体，台湾）',
+                    'zh-HK': '中文（繁体，香港）',
+                    'en-US': '英语（美国）',
+                    'en-GB': '英语（英国）',
+                    'en-AU': '英语（澳大利亚）',
+                    'ja-JP': '日语（日本）',
+                    'ko-KR': '韩语（韩国）',
+                    'de-DE': '德语（德国）',
+                    'fr-FR': '法语（法国）',
+                    'es-ES': '西班牙语（西班牙）',
+                    'it-IT': '意大利语（意大利）',
+                    'pt-BR': '葡萄牙语（巴西）',
+                    'ru-RU': '俄语（俄罗斯）',
+                    'ar-SA': '阿拉伯语（沙特阿拉伯）',
+                    'hi-IN': '印地语（印度）',
+                    'th-TH': '泰语（泰国）',
+                    'vi-VN': '越南语（越南）',
+                    'id-ID': '印尼语（印度尼西亚）',
+                    'nl-NL': '荷兰语（荷兰）',
+                    'pl-PL': '波兰语（波兰）',
+                    'tr-TR': '土耳其语（土耳其）',
+                    'sv-SE': '瑞典语（瑞典）',
+                    'da-DK': '丹麦语（丹麦）',
+                    'fi-FI': '芬兰语（芬兰）',
+                    'no-NO': '挪威语（挪威）',
+                    'cs-CZ': '捷克语（捷克）',
+                    'hu-HU': '匈牙利语（匈牙利）',
+                    'ro-RO': '罗马尼亚语（罗马尼亚）',
+                    'el-GR': '希腊语（希腊）',
+                    'he-IL': '希伯来语（以色列）',
+                    'af-ZA': '南非荷兰语（南非）',
+                    'sq-AL': '阿尔巴尼亚语（阿尔巴尼亚）',
+                    'am-ET': '阿姆哈拉语（埃塞俄比亚）',
+                    'bn-IN': '孟加拉语（印度）',
+                    'bg-BG': '保加利亚语（保加利亚）',
+                    'ca-ES': '加泰罗尼亚语（西班牙）',
+                    'hr-HR': '克罗地亚语（克罗地亚）',
+                    'et-EE': '爱沙尼亚语（爱沙尼亚）',
+                    'fil-PH': '菲律宾语（菲律宾）',
+                    'ka-GE': '格鲁吉亚语（格鲁吉亚）',
+                    'gu-IN': '古吉拉特语（印度）',
+                    'is-IS': '冰岛语（冰岛）',
+                    'iu-CANS': '因纽特语（加拿大）',
+                    'iu-Latn': '因纽特语（拉丁文）',
+                    'kn-IN': '卡纳达语（印度）',
+                    'km-KH': '高棉语（柬埔寨）',
+                    'lo-LA': '老挝语（老挝）',
+                    'lv-LV': '拉脱维亚语（拉脱维亚）',
+                    'lt-LT': '立陶宛语（立陶宛）',
+                    'mk-MK': '马其顿语（马其顿）',
+                    'ml-IN': '马拉雅拉姆语（印度）',
+                    'mr-IN': '马拉地语（印度）',
+                    'ms-MY': '马来语（马来西亚）',
+                    'my-MM': '缅甸语（缅甸）',
+                    'ne-NP': '尼泊尔语（尼泊尔）',
+                    'pa-IN': '旁遮普语（印度）',
+                    'fa-IR': '波斯语（伊朗）',
+                    'si-LK': '僧伽罗语（斯里兰卡）',
+                    'sk-SK': '斯洛伐克语（斯洛伐克）',
+                    'sl-SI': '斯洛文尼亚语（斯洛文尼亚）',
+                    'sr-RS': '塞尔维亚语（塞尔维亚）',
+                    'sw-KE': '斯瓦希里语（肯尼亚）',
+                    'ta-IN': '泰米尔语（印度）',
+                    'te-IN': '泰卢固语（印度）',
+                    'uk-UA': '乌克兰语（乌克兰）',
+                    'ur-PK': '乌尔都语（巴基斯坦）',
+                    'uz-UZ': '乌兹别克语（乌兹别克斯坦）',
+                    'zu-ZA': '祖鲁语（南非）'
+                },
+                en: {
+                    'zh-CN': 'Chinese (Simplified, PRC)',
+                    'zh-CN-liaoning': 'Chinese (Simplified, PRC, Liaoning)',
+                    'zh-CN-shaanxi': 'Chinese (Simplified, PRC, Shaanxi)',
+                    'zh-TW': 'Chinese (Traditional, Taiwan)',
+                    'zh-HK': 'Chinese (Traditional, Hong Kong)',
+                    'en-US': 'English (United States)',
+                    'en-GB': 'English (United Kingdom)',
+                    'en-AU': 'English (Australia)',
+                    'ja-JP': 'Japanese (Japan)',
+                    'ko-KR': 'Korean (Korea)',
+                    'de-DE': 'German (Germany)',
+                    'fr-FR': 'French (France)',
+                    'es-ES': 'Spanish (Spain)',
+                    'it-IT': 'Italian (Italy)',
+                    'pt-BR': 'Portuguese (Brazil)',
+                    'ru-RU': 'Russian (Russia)',
+                    'ar-SA': 'Arabic (Saudi Arabia)',
+                    'hi-IN': 'Hindi (India)',
+                    'th-TH': 'Thai (Thailand)',
+                    'vi-VN': 'Vietnamese (Vietnam)',
+                    'id-ID': 'Indonesian (Indonesia)',
+                    'nl-NL': 'Dutch (Netherlands)',
+                    'pl-PL': 'Polish (Poland)',
+                    'tr-TR': 'Turkish (Turkey)',
+                    'sv-SE': 'Swedish (Sweden)',
+                    'da-DK': 'Danish (Denmark)',
+                    'fi-FI': 'Finnish (Finland)',
+                    'no-NO': 'Norwegian (Norway)',
+                    'cs-CZ': 'Czech (Czech Republic)',
+                    'hu-HU': 'Hungarian (Hungary)',
+                    'ro-RO': 'Romanian (Romania)',
+                    'el-GR': 'Greek (Greece)',
+                    'he-IL': 'Hebrew (Israel)',
+                    'af-ZA': 'Afrikaans (South Africa)',
+                    'sq-AL': 'Albanian (Albania)',
+                    'am-ET': 'Amharic (Ethiopia)',
+                    'bn-IN': 'Bengali (India)',
+                    'bg-BG': 'Bulgarian (Bulgaria)',
+                    'ca-ES': 'Catalan (Spain)',
+                    'hr-HR': 'Croatian (Croatia)',
+                    'et-EE': 'Estonian (Estonia)',
+                    'fil-PH': 'Filipino (Philippines)',
+                    'ka-GE': 'Georgian (Georgia)',
+                    'gu-IN': 'Gujarati (India)',
+                    'is-IS': 'Icelandic (Iceland)',
+                    'iu-CANS': 'Inuktitut (Canada)',
+                    'iu-Latn': 'Inuktitut (Latin)',
+                    'kn-IN': 'Kannada (India)',
+                    'km-KH': 'Khmer (Cambodia)',
+                    'lo-LA': 'Lao (Laos)',
+                    'lv-LV': 'Latvian (Latvia)',
+                    'lt-LT': 'Lithuanian (Lithuania)',
+                    'mk-MK': 'Macedonian (Macedonia)',
+                    'ml-IN': 'Malayalam (India)',
+                    'mr-IN': 'Marathi (India)',
+                    'ms-MY': 'Malay (Malaysia)',
+                    'my-MM': 'Burmese (Myanmar)',
+                    'ne-NP': 'Nepali (Nepal)',
+                    'pa-IN': 'Punjabi (India)',
+                    'fa-IR': 'Persian (Iran)',
+                    'si-LK': 'Sinhala (Sri Lanka)',
+                    'sk-SK': 'Slovak (Slovakia)',
+                    'sl-SI': 'Slovenian (Slovenia)',
+                    'sr-RS': 'Serbian (Serbia)',
+                    'sw-KE': 'Swahili (Kenya)',
+                    'ta-IN': 'Tamil (India)',
+                    'te-IN': 'Telugu (India)',
+                    'uk-UA': 'Ukrainian (Ukraine)',
+                    'ur-PK': 'Urdu (Pakistan)',
+                    'uz-UZ': 'Uzbek (Uzbekistan)',
+                    'zu-ZA': 'Zulu (South Africa)'
+                }
+            };
+
+            // 尝试精确匹配
+            if (langTranslations[currentLang] && langTranslations[currentLang][langCode]) {
+                return langTranslations[currentLang][langCode];
+            }
+
+            // 如果没有精确匹配，返回原始代码
+            return langCode;
+        }
+        function getMainLanguage(langCode) {
+            const lang = langCode.toLowerCase();
+
+            // 直接匹配完整的语言代码
+            const langMap = {
+                'af': 'af', 'af-za': 'af',
+                'am': 'am', 'am-et': 'am',
+                'ar': 'ar', 'ar-sa': 'ar', 'ar-eg': 'ar', 'ar-ae': 'ar',
+                'az': 'az', 'az-az': 'az',
+                'bg': 'bg', 'bg-bg': 'bg',
+                'bn': 'bn', 'bn-bd': 'bn', 'bn-in': 'bn',
+                'bs': 'bs', 'bs-ba': 'bs',
+                'ca': 'ca', 'ca-es': 'ca',
+                'cs': 'cs', 'cs-cz': 'cs',
+                'cy': 'cy', 'cy-gb': 'cy',
+                'da': 'da', 'da-dk': 'da',
+                'de': 'de', 'de-de': 'de', 'de-at': 'de', 'de-ch': 'de',
+                'el': 'el', 'el-gr': 'el',
+                'en': 'en', 'en-us': 'en', 'en-gb': 'en', 'en-au': 'en', 'en-ca': 'en', 'en-in': 'en',
+                'es': 'es', 'es-es': 'es', 'es-mx': 'es', 'es-ar': 'es',
+                'et': 'et', 'et-ee': 'et',
+                'eu': 'eu', 'eu-es': 'eu',
+                'fa': 'fa', 'fa-ir': 'fa',
+                'fi': 'fi', 'fi-fi': 'fi',
+                'fil': 'fil', 'fil-ph': 'fil',
+                'fr': 'fr', 'fr-fr': 'fr', 'fr-ca': 'fr', 'fr-ch': 'fr',
+                'ga': 'ga', 'ga-ie': 'ga',
+                'gl': 'gl', 'gl-es': 'gl',
+                'gu': 'gu', 'gu-in': 'gu',
+                'he': 'he', 'he-il': 'he',
+                'hi': 'hi', 'hi-in': 'hi',
+                'hr': 'hr', 'hr-hr': 'hr',
+                'hu': 'hu', 'hu-hu': 'hu',
+                'hy': 'hy', 'hy-am': 'hy',
+                'id': 'id', 'id-id': 'id',
+                'is': 'is', 'is-is': 'is',
+                'it': 'it', 'it-it': 'it',
+                'iu': 'iu', 'iu-cans': 'iu', 'iu-latn': 'iu',
+                'ja': 'ja', 'ja-jp': 'ja',
+                'jv': 'jv', 'jv-id': 'jv',
+                'ka': 'ka', 'ka-ge': 'ka',
+                'kk': 'kk', 'kk-kz': 'kk',
+                'km': 'km', 'km-kh': 'km',
+                'kn': 'kn', 'kn-in': 'kn',
+                'ko': 'ko', 'ko-kr': 'ko',
+                'lo': 'lo', 'lo-la': 'lo',
+                'lt': 'lt', 'lt-lt': 'lt',
+                'lv': 'lv', 'lv-lv': 'lv',
+                'mk': 'mk', 'mk-mk': 'mk',
+                'ml': 'ml', 'ml-in': 'ml',
+                'mn': 'mn', 'mn-mn': 'mn',
+                'mr': 'mr', 'mr-in': 'mr',
+                'ms': 'ms', 'ms-my': 'ms',
+                'mt': 'mt', 'mt-mt': 'mt',
+                'my': 'my', 'my-mm': 'my',
+                'nb': 'no', 'nb-no': 'no', 'no': 'no', 'no-no': 'no',
+                'ne': 'ne', 'ne-np': 'ne',
+                'nl': 'nl', 'nl-nl': 'nl', 'nl-be': 'nl',
+                'pa': 'pa', 'pa-in': 'pa',
+                'pl': 'pl', 'pl-pl': 'pl',
+                'ps': 'ps', 'ps-af': 'ps',
+                'pt': 'pt', 'pt-br': 'pt', 'pt-pt': 'pt',
+                'ro': 'ro', 'ro-ro': 'ro',
+                'ru': 'ru', 'ru-ru': 'ru',
+                'si': 'si', 'si-lk': 'si',
+                'sk': 'sk', 'sk-sk': 'sk',
+                'sl': 'sl', 'sl-si': 'sl',
+                'so': 'so', 'so-so': 'so',
+                'sq': 'sq', 'sq-al': 'sq',
+                'sr': 'sr', 'sr-rs': 'sr',
+                'su': 'su', 'su-id': 'su',
+                'sv': 'sv', 'sv-se': 'sv',
+                'sw': 'sw', 'sw-ke': 'sw', 'sw-tz': 'sw',
+                'ta': 'ta', 'ta-in': 'ta', 'ta-lk': 'ta',
+                'te': 'te', 'te-in': 'te',
+                'th': 'th', 'th-th': 'th',
+                'tr': 'tr', 'tr-tr': 'tr',
+                'uk': 'uk', 'uk-ua': 'uk',
+                'ur': 'ur', 'ur-pk': 'ur',
+                'uz': 'uz', 'uz-uz': 'uz',
+                'vi': 'vi', 'vi-vn': 'vi',
+                'zh': 'zh', 'zh-cn': 'zh', 'zh-tw': 'zh', 'zh-hk': 'zh',
+                'zu': 'zu', 'zu-za': 'zu'
+            };
+
+            // 尝试直接匹配
+            if (langMap[lang]) {
+                return langMap[lang];
+            }
+
+            // 尝试匹配前缀（如 zh-CN-xxx -> zh）
+            const prefix = lang.split('-')[0];
+            if (langMap[prefix]) {
+                return langMap[prefix];
+            }
+
+            // 如果都没匹配到，返回前缀
+            return prefix;
+        }
+
+        // 获取语言的显示名称
+        function getLanguageDisplayName(langCode, currentLang) {
+            const languageNames = {
+                af: { zh: '南非荷兰文', en: 'Afrikaans' },
+                am: { zh: '阿姆哈拉文', en: 'Amharic' },
+                ar: { zh: '阿拉伯文', en: 'Arabic' },
+                az: { zh: '阿塞拜疆文', en: 'Azerbaijani' },
+                bg: { zh: '保加利亚文', en: 'Bulgarian' },
+                bn: { zh: '孟加拉文', en: 'Bengali' },
+                bs: { zh: '波斯尼亚文', en: 'Bosnian' },
+                ca: { zh: '加泰罗尼亚文', en: 'Catalan' },
+                cs: { zh: '捷克文', en: 'Czech' },
+                cy: { zh: '威尔士文', en: 'Welsh' },
+                da: { zh: '丹麦文', en: 'Danish' },
+                de: { zh: '德文', en: 'German' },
+                el: { zh: '希腊文', en: 'Greek' },
+                en: { zh: '英文', en: 'English' },
+                es: { zh: '西班牙文', en: 'Spanish' },
+                et: { zh: '爱沙尼亚文', en: 'Estonian' },
+                eu: { zh: '巴斯克文', en: 'Basque' },
+                fa: { zh: '波斯文', en: 'Persian' },
+                fi: { zh: '芬兰文', en: 'Finnish' },
+                fil: { zh: '菲律宾文', en: 'Filipino' },
+                fr: { zh: '法文', en: 'French' },
+                ga: { zh: '爱尔兰文', en: 'Irish' },
+                gl: { zh: '加利西亚文', en: 'Galician' },
+                gu: { zh: '古吉拉特文', en: 'Gujarati' },
+                he: { zh: '希伯来文', en: 'Hebrew' },
+                hi: { zh: '印地文', en: 'Hindi' },
+                hr: { zh: '克罗地亚文', en: 'Croatian' },
+                hu: { zh: '匈牙利文', en: 'Hungarian' },
+                hy: { zh: '亚美尼亚文', en: 'Armenian' },
+                id: { zh: '印尼文', en: 'Indonesian' },
+                is: { zh: '冰岛文', en: 'Icelandic' },
+                it: { zh: '意大利文', en: 'Italian' },
+                iu: { zh: '因纽特文', en: 'Inuktitut' },
+                ja: { zh: '日文', en: 'Japanese' },
+                jv: { zh: '爪哇文', en: 'Javanese' },
+                ka: { zh: '格鲁吉亚文', en: 'Georgian' },
+                kk: { zh: '哈萨克文', en: 'Kazakh' },
+                km: { zh: '高棉文', en: 'Khmer' },
+                kn: { zh: '卡纳达文', en: 'Kannada' },
+                ko: { zh: '韩文', en: 'Korean' },
+                lo: { zh: '老挝文', en: 'Lao' },
+                lt: { zh: '立陶宛文', en: 'Lithuanian' },
+                lv: { zh: '拉脱维亚文', en: 'Latvian' },
+                mk: { zh: '马其顿文', en: 'Macedonian' },
+                ml: { zh: '马拉雅拉姆文', en: 'Malayalam' },
+                mn: { zh: '蒙古文', en: 'Mongolian' },
+                mr: { zh: '马拉地文', en: 'Marathi' },
+                ms: { zh: '马来文', en: 'Malay' },
+                mt: { zh: '马耳他文', en: 'Maltese' },
+                my: { zh: '缅甸文', en: 'Burmese' },
+                ne: { zh: '尼泊尔文', en: 'Nepali' },
+                nl: { zh: '荷兰文', en: 'Dutch' },
+                no: { zh: '挪威文', en: 'Norwegian' },
+                pa: { zh: '旁遮普文', en: 'Punjabi' },
+                pl: { zh: '波兰文', en: 'Polish' },
+                ps: { zh: '普什图文', en: 'Pashto' },
+                pt: { zh: '葡萄牙文', en: 'Portuguese' },
+                ro: { zh: '罗马尼亚文', en: 'Romanian' },
+                ru: { zh: '俄文', en: 'Russian' },
+                si: { zh: '僧伽罗文', en: 'Sinhala' },
+                sk: { zh: '斯洛伐克文', en: 'Slovak' },
+                sl: { zh: '斯洛文尼亚文', en: 'Slovenian' },
+                so: { zh: '索马里文', en: 'Somali' },
+                sq: { zh: '阿尔巴尼亚文', en: 'Albanian' },
+                sr: { zh: '塞尔维亚文', en: 'Serbian' },
+                su: { zh: '巽他文', en: 'Sundanese' },
+                sv: { zh: '瑞典文', en: 'Swedish' },
+                sw: { zh: '斯瓦希里文', en: 'Swahili' },
+                ta: { zh: '泰米尔文', en: 'Tamil' },
+                te: { zh: '泰卢固文', en: 'Telugu' },
+                th: { zh: '泰文', en: 'Thai' },
+                tr: { zh: '土耳其文', en: 'Turkish' },
+                uk: { zh: '乌克兰文', en: 'Ukrainian' },
+                ur: { zh: '乌尔都文', en: 'Urdu' },
+                uz: { zh: '乌兹别克文', en: 'Uzbek' },
+                vi: { zh: '越南文', en: 'Vietnamese' },
+                zh: { zh: '中文', en: 'Chinese' },
+                zu: { zh: '祖鲁文', en: 'Zulu' }
+            };
+
+            const chineseName = languageNames[langCode]?.zh || langCode.toUpperCase();
+            const englishName = languageNames[langCode]?.en || langCode.toUpperCase();
+
+            // 根据当前语言返回不同格式
+            if (currentLang === 'zh') {
+                // 中文界面：显示"中文 Chinese"格式
+                return `${chineseName} ${englishName}`;
+            } else {
+                // 英文界面：只显示英文名称
+                return englishName;
+            }
+        }
+
         // 加载可用的语音到设置模态框
         function loadVoicesToModal() {
             const voices = synth.getVoices();
-            voiceCheckboxList.innerHTML = '';
             allVoicesList = voices;
-            
-            // 优先显示中文语音
-            const chineseVoices = voices.filter(voice => 
-                voice.lang.includes('zh') || voice.lang.includes('CN') || voice.lang.includes('TW')
-            );
-            
-            const otherVoices = voices.filter(voice => 
-                !voice.lang.includes('zh') && !voice.lang.includes('CN') && !voice.lang.includes('TW')
-            );
+            availableLanguages.clear();
 
-            // 合并语音列表，中文优先
-            const allVoices = [...chineseVoices, ...otherVoices];
+            // 收集所有可用的语言
+            voices.forEach(voice => {
+                const mainLang = getMainLanguage(voice.lang);
+                availableLanguages.add(mainLang);
+            });
+
+            // 初始化语言列表面板
+            initializeLanguageListPanel();
+
+            // 加载保存的设置
+            const settings = loadSettings();
+            if (settings && settings.enabledVoices && settings.enabledVoices.length > 0) {
+                // 恢复选中状态到 voiceSelectionState
+                voiceSelectionState = {};
+                voices.forEach(voice => {
+                    voiceSelectionState[voice.name] = settings.enabledVoices.includes(voice.name);
+                });
+                updateLanguageListIndicators();
+            } else if (settings && settings.enabledVoices && settings.enabledVoices.length === 0) {
+                // 用户已经删除了所有声音，保持空状态
+                voiceSelectionState = {};
+                voices.forEach(voice => {
+                    voiceSelectionState[voice.name] = false;
+                });
+                updateLanguageListIndicators();
+            } else {
+                // 第一次使用：使用默认声音并保存到 localStorage
+                const defaultVoices = getDefaultVoices(voices);
+                voiceSelectionState = {};
+                voices.forEach(voice => {
+                    // 只有在默认列表中的声音才设置为true
+                    voiceSelectionState[voice.name] = defaultVoices.some(dv => dv.name === voice.name);
+                });
+
+                // 保存默认声音到 localStorage
+                const defaultVoiceNames = defaultVoices.map(v => v.name);
+                const currentSettings = loadSettings() || {};
+                currentSettings.enabledVoices = defaultVoiceNames;
+                localStorage.setItem('ttsSettings', JSON.stringify(currentSettings));
+
+                updateLanguageListIndicators();
+            }
+
+            // 加载其他设置
+            loadSettingsToModal(settings);
+        }
+
+        // 初始化语言列表面板
+        function initializeLanguageListPanel() {
+            const currentLang = getCurrentLanguage();
+            languageListPanel.innerHTML = '';
+
+            // 添加"显示全部"选项
+            const allItem = document.createElement('div');
+            allItem.className = 'language-list-item';
+            allItem.dataset.lang = 'all';
+            allItem.textContent = currentLang === 'zh' ? '显示全部' : 'Show All';
+            languageListPanel.appendChild(allItem);
+
+            // 获取语言的英文名称用于排序
+            const getEnglishName = (langCode) => {
+                const names = {
+                    zh: 'Chinese', en: 'English', ja: 'Japanese', ko: 'Korean',
+                    es: 'Spanish', fr: 'French', de: 'German', it: 'Italian',
+                    pt: 'Portuguese', ru: 'Russian', ar: 'Arabic', hi: 'Hindi',
+                    nl: 'Dutch', pl: 'Polish', id: 'Indonesian', th: 'Thai',
+                    vi: 'Vietnamese', tr: 'Turkish', sv: 'Swedish', da: 'Danish',
+                    no: 'Norwegian', fi: 'Finnish', cs: 'Czech', el: 'Greek',
+                    he: 'Hebrew', hu: 'Hungarian', ro: 'Romanian', sk: 'Slovak',
+                    uk: 'Ukrainian', ca: 'Catalan', hr: 'Croatian', bn: 'Bengali',
+                    ta: 'Tamil', te: 'Telugu', mr: 'Marathi', gu: 'Gujarati'
+                };
+                return names[langCode] || langCode.toUpperCase();
+            };
+
+            // 按英文名称字母顺序排序
+            const sortedLanguages = Array.from(availableLanguages).sort((a, b) => {
+                return getEnglishName(a).localeCompare(getEnglishName(b));
+            });
+
+            // 为每种语言添加列表项
+            sortedLanguages.forEach(langCode => {
+                const item = document.createElement('div');
+                item.className = 'language-list-item';
+                item.dataset.lang = langCode;
+                item.textContent = getLanguageDisplayName(langCode, currentLang);
+                languageListPanel.appendChild(item);
+            });
+
+            // 添加点击事件
+            languageListPanel.querySelectorAll('.language-list-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    // 移除所有active状态
+                    languageListPanel.querySelectorAll('.language-list-item').forEach(i => i.classList.remove('active'));
+                    // 添加当前active状态
+                    item.classList.add('active');
+
+                    // 显示对应语言的语音
+                    const selectedLang = item.dataset.lang;
+                    currentSelectedLanguage = selectedLang;
+                    displayVoicesForLanguage(selectedLang);
+                });
+            });
+
+            // 默认选中"显示全部"
+            allItem.classList.add('active');
+            displayVoicesForLanguage('all');
+        }
+
+        // 显示指定语言的语音
+        function displayVoicesForLanguage(langCode) {
+            const currentLang = getCurrentLanguage();
+            voiceCheckboxList.innerHTML = '';
+
+            // 更新标题和按钮
+            if (langCode === 'all') {
+                voiceSelectionTitle.textContent = currentLang === 'zh' ? '所有语音' : 'All Voices';
+            } else {
+                voiceSelectionTitle.textContent = getLanguageDisplayName(langCode, currentLang);
+            }
+            selectAllCurrentBtn.style.display = 'block';
+            selectAllCurrentBtn.style.background = 'white';
+            selectAllCurrentBtn.style.color = '#333';
+            deselectAllCurrentBtn.style.display = 'block';
+            deselectAllCurrentBtn.style.background = 'white';
+            deselectAllCurrentBtn.style.color = '#333';
+
+            // 获取对应语言的语音
+            let voicesToDisplay;
+            if (langCode === 'all') {
+                voicesToDisplay = allVoicesList;
+            } else {
+                voicesToDisplay = allVoicesList.filter(voice => getMainLanguage(voice.lang) === langCode);
+            }
+
+            // 如果是中文语音，进行自定义排序
+            if (langCode === 'zh') {
+                voicesToDisplay.sort((a, b) => {
+                    // 定义排序优先级
+                    const getPriority = (voice) => {
+                        const name = voice.name;
+                        const lang = voice.lang.toLowerCase();
+
+                        // 1. 简体中文（中国）- 优先级最高（除了慧慧、康康、瑶瑶）
+                        if (lang.includes('zh-cn')) {
+                            // 慧慧、康康、瑶瑶放到最后
+                            if (name.includes('Huihui') || name.includes('Kangkang') || name.includes('Yaoyao')) {
+                                return 1000;
+                            }
+                            // 辽宁、陕西的声音（晓北、晓妮）
+                            if (lang.includes('liaoning') || lang.includes('shaanxi')) {
+                                return 150;
+                            }
+                            // 其他简体中文
+                            return 100;
+                        }
+
+                        // 2. 繁体中文（香港）- 晓佳、晓曼、云龙
+                        if (lang.includes('zh-hk')) {
+                            if (name.includes('HiuGaai') || name.includes('HiuMaan') || name.includes('WanLung')) {
+                                return 200;
+                            }
+                            return 300;
+                        }
+
+                        // 3. 繁体中文（台湾）
+                        if (lang.includes('zh-tw')) {
+                            return 400;
+                        }
+
+                        // 4. 其他中文变体
+                        return 500;
+                    };
+
+                    const priorityA = getPriority(a);
+                    const priorityB = getPriority(b);
+
+                    if (priorityA !== priorityB) {
+                        return priorityA - priorityB;
+                    }
+
+                    // 同优先级按名称排序
+                    return a.name.localeCompare(b.name);
+                });
+            }
 
             // 创建复选框
-            allVoices.forEach(voice => {
+            voicesToDisplay.forEach(voice => {
                 const item = document.createElement('div');
                 item.className = 'voice-checkbox-item';
-                
+
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.id = `voice-${voice.name.replace(/\s/g, '-')}`;
                 checkbox.dataset.voiceName = voice.name;
-                checkbox.checked = true; // 默认全选
-                
+                checkbox.dataset.lang = getMainLanguage(voice.lang);
+
+                // 从状态中恢复选中状态
+                checkbox.checked = voiceSelectionState[voice.name] || false;
+
+                // 监听变化，保存状态
+                checkbox.addEventListener('change', () => {
+                    voiceSelectionState[voice.name] = checkbox.checked;
+                    updateLanguageListIndicators();
+                });
+
                 const label = document.createElement('label');
                 label.htmlFor = checkbox.id;
-                label.textContent = `${voice.name} (${voice.lang})`;
-                
+
+                // 根据当前语言翻译语音名称和标签
+                if (currentLang === 'zh') {
+                    // 中文界面：完全翻译，只显示中文
+                    // 先翻译语音名称（去掉所有英文）
+                    let translatedName = translateVoiceName(voice.name, currentLang);
+                    // 翻译语言标签
+                    const translatedLang = translateVoiceLang(voice.lang, currentLang);
+                    // 只显示：翻译后的名称 - 翻译后的语言
+                    label.textContent = `${translatedName} - ${translatedLang}`;
+                } else {
+                    // 英文界面：保持原样
+                    label.textContent = `${voice.name} - ${voice.lang}`;
+                }
+
                 item.appendChild(checkbox);
                 item.appendChild(label);
                 voiceCheckboxList.appendChild(item);
             });
 
-            // 加载保存的设置
-            const settings = loadSettings();
-            loadSettingsToModal(settings);
+            if (voicesToDisplay.length === 0) {
+                voiceCheckboxList.innerHTML = '<div style="color: #999; padding: 10px; text-align: center;">该语言暂无可用语音</div>';
+                selectAllCurrentBtn.style.display = 'none';
+                deselectAllCurrentBtn.style.display = 'none';
+            }
         }
+
+        // 更新语言列表的指示器（显示哪些语言有选中的语音）
+        function updateLanguageListIndicators() {
+            languageListPanel.querySelectorAll('.language-list-item').forEach(item => {
+                const lang = item.dataset.lang;
+
+                if (lang === 'all') {
+                    // "显示全部"不需要指示器
+                    item.classList.remove('has-selection');
+                    return;
+                }
+
+                // 检查该语言是否有选中的语音
+                const hasSelection = allVoicesList.some(voice =>
+                    getMainLanguage(voice.lang) === lang && voiceSelectionState[voice.name]
+                );
+
+                if (hasSelection) {
+                    item.classList.add('has-selection');
+                } else {
+                    item.classList.remove('has-selection');
+                }
+            });
+        }
+
+        // "全选"按钮事件
+        selectAllCurrentBtn.addEventListener('click', () => {
+            voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = true;
+                voiceSelectionState[cb.dataset.voiceName] = true;
+            });
+            updateLanguageListIndicators();
+        });
+
+        // "全部取消"按钮事件
+        deselectAllCurrentBtn.addEventListener('click', () => {
+            voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+                voiceSelectionState[cb.dataset.voiceName] = false;
+            });
+            updateLanguageListIndicators();
+        });
 
         // 加载可用的语音（用于主界面显示）
         function loadVoices() {
             const voices = synth.getVoices();
             voiceTags.innerHTML = '';
-            
+
+            // 获取当前语言
+            const currentLang = getCurrentLanguage();
+
             // 获取保存的设置
             const settings = loadSettings();
             const enabledVoices = settings && settings.enabledVoices ? settings.enabledVoices : null;
-            
-            // 优先显示中文语音
-            const chineseVoices = voices.filter(voice => {
-                const isChinese = voice.lang.includes('zh') || voice.lang.includes('CN') || voice.lang.includes('TW');
-                return isChinese && (enabledVoices === null || enabledVoices.includes(voice.name));
-            });
-            
-            const otherVoices = voices.filter(voice => {
-                const isNotChinese = !voice.lang.includes('zh') && !voice.lang.includes('CN') && !voice.lang.includes('TW');
-                return isNotChinese && (enabledVoices === null || enabledVoices.includes(voice.name));
+
+            // 根据保存的设置过滤语音
+            let filteredVoices;
+            if (enabledVoices === null) {
+                // 第一次使用（从未保存过设置）：显示默认声音
+                const defaultVoices = getDefaultVoices(voices);
+                filteredVoices = defaultVoices;
+            } else if (enabledVoices.length > 0) {
+                // 有保存的设置且不为空，只显示勾选的语音
+                filteredVoices = voices.filter(voice => enabledVoices.includes(voice.name));
+            } else {
+                // 用户已经把所有声音都删除了，显示空
+                filteredVoices = [];
+            }
+
+            // 对语音进行排序（和设置模态框中的排序逻辑一致）
+            filteredVoices.sort((a, b) => {
+                // 定义排序优先级
+                const getPriority = (voice) => {
+                    const name = voice.name;
+                    const lang = voice.lang.toLowerCase();
+
+                    // 1. 简体中文（中国）- 优先级最高（除了慧慧、康康、瑶瑶）
+                    if (lang.includes('zh-cn')) {
+                        // 慧慧、康康、瑶瑶放到最后
+                        if (name.includes('Huihui') || name.includes('Kangkang') || name.includes('Yaoyao')) {
+                            return 1000;
+                        }
+                        // 辽宁、陕西的声音（晓北、晓妮）
+                        if (lang.includes('liaoning') || lang.includes('shaanxi')) {
+                            return 150;
+                        }
+                        // 其他简体中文
+                        return 100;
+                    }
+
+                    // 2. 繁体中文（香港）- 晓佳、晓曼、云龙
+                    if (lang.includes('zh-hk')) {
+                        if (name.includes('HiuGaai') || name.includes('HiuMaan') || name.includes('WanLung')) {
+                            return 200;
+                        }
+                        return 300;
+                    }
+
+                    // 3. 繁体中文（台湾）
+                    if (lang.includes('zh-tw')) {
+                        return 400;
+                    }
+
+                    // 4. 英文
+                    if (lang.includes('en')) {
+                        return 500;
+                    }
+
+                    // 5. 其他语言
+                    return 600;
+                };
+
+                const priorityA = getPriority(a);
+                const priorityB = getPriority(b);
+
+                if (priorityA !== priorityB) {
+                    return priorityA - priorityB;
+                }
+
+                // 同优先级按名称排序
+                return a.name.localeCompare(b.name);
             });
 
-            // 合并语音列表，中文优先
-            const allVoices = [...chineseVoices, ...otherVoices];
-
-            if (allVoices.length === 0) {
-                voiceTags.innerHTML = '<div style="color: #999; padding: 10px;">没有可用的语音，请在设置中选择要显示的声音</div>';
+            if (filteredVoices.length === 0) {
+                voiceTags.innerHTML = `<div style="color: #999; padding: 10px;">${translations[currentLang].noVoices}</div>`;
                 return;
             }
 
             // 获取保存的语音选择
             const savedSettings = loadSettings();
             const savedVoiceName = savedSettings && savedSettings.selectedVoice ? savedSettings.selectedVoice : null;
-            
+
             // 创建标签按钮
-            allVoices.forEach((voice, index) => {
+            filteredVoices.forEach((voice, index) => {
                 const tag = document.createElement('div');
                 tag.className = 'voice-tag';
-                tag.textContent = voice.name;
+
+                // 根据当前语言翻译语音名称
+                if (currentLang === 'zh') {
+                    // 中文界面：翻译语音名称
+                    const translatedName = translateVoiceName(voice.name, currentLang);
+                    const translatedLang = translateVoiceLang(voice.lang, currentLang);
+                    tag.textContent = `${translatedName} - ${translatedLang}`;
+                } else {
+                    // 英文界面：保持原样
+                    tag.textContent = `${voice.name} - ${voice.lang}`;
+                }
+
                 tag.dataset.voiceName = voice.name;
                 tag.dataset.voiceLang = voice.lang;
-                
+
                 // 检查是否应该选中这个语音
                 let shouldSelect = false;
                 if (savedVoiceName && savedVoiceName === voice.name) {
@@ -958,24 +2476,42 @@
                     shouldSelect = true;
                     selectedVoiceName = voice.name;
                 }
-                
+
                 if (shouldSelect) {
                     tag.classList.add('active');
                 }
-                
+
+                // 左键点击标签选择语音
                 tag.addEventListener('click', () => {
                     // 移除所有活动状态
                     document.querySelectorAll('.voice-tag').forEach(t => t.classList.remove('active'));
                     // 添加当前活动状态
                     tag.classList.add('active');
                     selectedVoiceName = voice.name;
-                    
+
                     // 保存选择的语音到 localStorage
                     const currentSettings = loadSettings() || {};
                     currentSettings.selectedVoice = voice.name;
                     localStorage.setItem('ttsSettings', JSON.stringify(currentSettings));
                 });
-                
+
+                // 右键点击显示菜单
+                tag.addEventListener('contextmenu', (e) => {
+                    e.preventDefault(); // 阻止默认右键菜单
+
+                    const contextMenu = document.getElementById('contextMenu');
+                    const currentLang = getCurrentLanguage();
+
+                    // 显示菜单
+                    contextMenu.classList.add('show');
+                    contextMenu.style.left = e.pageX + 'px';
+                    contextMenu.style.top = e.pageY + 'px';
+
+                    // 存储当前右键的语音信息
+                    contextMenu.dataset.voiceName = voice.name;
+                    contextMenu.dataset.voiceLang = voice.lang;
+                });
+
                 voiceTags.appendChild(tag);
             });
         }
@@ -988,11 +2524,71 @@
             };
         }
         loadVoices();
-        
+
         // 延迟加载模态框中的语音列表（等待语音加载完成）
         setTimeout(() => {
             loadVoicesToModal();
         }, 500);
+
+        // ==================== 右键菜单功能 ====================
+        const contextMenu = document.getElementById('contextMenu');
+        const contextMenuRemove = document.getElementById('contextMenuRemove');
+
+        // 点击菜单项 - 移除语音
+        contextMenuRemove.addEventListener('click', () => {
+            const voiceName = contextMenu.dataset.voiceName;
+            const voiceLang = contextMenu.dataset.voiceLang;
+            const currentLang = getCurrentLanguage();
+
+            // 隐藏菜单
+            contextMenu.classList.remove('show');
+
+            // 显示确认对话框
+            const voiceDisplayName = currentLang === 'zh'
+                ? `${translateVoiceName(voiceName, currentLang)} - ${translateVoiceLang(voiceLang, currentLang)}`
+                : `${voiceName} - ${voiceLang}`;
+
+            const confirmMessage = translations[currentLang].confirmRemoveVoice + '\n\n' + voiceDisplayName;
+
+            if (confirm(confirmMessage)) {
+                // 从设置中移除这个语音
+                const currentSettings = loadSettings() || {};
+                const enabledVoices = currentSettings.enabledVoices || [];
+                const updatedVoices = enabledVoices.filter(v => v !== voiceName);
+
+                currentSettings.enabledVoices = updatedVoices;
+                localStorage.setItem('ttsSettings', JSON.stringify(currentSettings));
+
+                // 如果删除的是当前选中的语音，需要选择另一个
+                if (selectedVoiceName === voiceName) {
+                    // 获取所有语音
+                    const voices = synth.getVoices();
+                    const remainingVoices = voices.filter(v => updatedVoices.includes(v.name));
+                    if (remainingVoices.length > 0) {
+                        currentSettings.selectedVoice = remainingVoices[0].name;
+                        selectedVoiceName = remainingVoices[0].name;
+                        localStorage.setItem('ttsSettings', JSON.stringify(currentSettings));
+                    }
+                }
+
+                // 重新加载语音列表
+                loadVoices();
+                loadVoicesToModal();
+
+                // 显示删除成功提示
+                showToast(translations[currentLang].voiceRemoved, 'success');
+            }
+        });
+
+        // 点击页面其他地方隐藏菜单
+        document.addEventListener('click', () => {
+            contextMenu.classList.remove('show');
+        });
+
+        // 阻止菜单自身的点击事件冒泡
+        contextMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
 
         // 应用默认设置
         const savedSettings = loadSettings();
@@ -1029,10 +2625,10 @@
 
         function startSpeech(text, options = {}) {
             const displayText = text.trim();
+            const currentLang = getCurrentLanguage();
 
             if (!displayText) {
-                status.textContent = options.errorMessage || '⚠️ 请输入要朗读的文本';
-                status.className = 'status error';
+                showToast(options.errorMessage || translations[currentLang].statusEmpty, 'error');
                 return;
             }
 
@@ -1055,26 +2651,21 @@
             utterance.volume = settings && settings.defaultVolume ? parseFloat(settings.defaultVolume) : 1.0;
 
             utterance.onstart = () => {
-                status.textContent = options.startMessage || '🔊 正在朗读...';
-                status.className = 'status active';
+                showToast(options.startMessage || translations[currentLang].statusSpeaking, 'info', 3000);
                 speakBtn.disabled = true;
                 resetBtn.disabled = false;
             };
 
             utterance.onend = () => {
-                status.textContent = '✅ 朗读完成';
-                status.className = 'status';
+                showToast(translations[currentLang].statusComplete, 'success');
                 speakBtn.disabled = false;
                 resetBtn.disabled = true;
             };
 
             utterance.onerror = (event) => {
                 if (event.error !== 'interrupted') {
-                    status.textContent = '❌ 朗读出错: ' + event.error;
-                    status.className = 'status error';
-                } else {
-                    status.textContent = '';
-                    status.className = 'status';
+                    const errorMsg = currentLang === 'zh' ? '❌ 朗读出错: ' + event.error : '❌ Error: ' + event.error;
+                    showToast(errorMsg, 'error');
                 }
                 speakBtn.disabled = false;
                 resetBtn.disabled = true;
@@ -1084,71 +2675,125 @@
         }
 
         speakBtn.addEventListener('click', () => {
+            const currentLang = getCurrentLanguage();
             startSpeech(textInput.value, {
-                errorMessage: '⚠️ 请输入要朗读的文本',
-                startMessage: '🔊 正在朗读...'
+                errorMessage: translations[currentLang].statusEmpty,
+                startMessage: translations[currentLang].statusSpeaking
             });
         });
 
         // 停止朗读
         resetBtn.addEventListener('click', () => {
+            const currentLang = getCurrentLanguage();
             synth.cancel();
-            status.textContent = '⏹️ 已停止';
-            status.className = 'status';
+            showToast(translations[currentLang].statusStopped, 'info');
             speakBtn.disabled = false;
             resetBtn.disabled = true;
         });
 
         // 复制文本
         copyBtn.addEventListener('click', async () => {
+            const currentLang = getCurrentLanguage();
             const text = textInput.value.trim();
-            
+
             if (!text) {
-                status.textContent = '⚠️ 没有内容可复制';
-                status.className = 'status error';
+                showToast(translations[currentLang].statusNoCopy, 'error');
                 return;
             }
 
             try {
                 await navigator.clipboard.writeText(text);
-                status.textContent = '✅ 已复制到剪贴板';
-                status.className = 'status active';
-                
-                // 2秒后清除提示
-                setTimeout(() => {
-                    if (status.textContent === '✅ 已复制到剪贴板') {
-                        status.textContent = '';
-                        status.className = 'status';
-                    }
-                }, 2000);
+                showToast(translations[currentLang].statusCopied, 'success');
             } catch (error) {
                 console.error('复制失败:', error);
                 // 降级方案：使用传统的复制方法
                 try {
                     textInput.select();
                     document.execCommand('copy');
-                    status.textContent = '✅ 已复制到剪贴板';
-                    status.className = 'status active';
-                    
-                    setTimeout(() => {
-                        if (status.textContent === '✅ 已复制到剪贴板') {
-                            status.textContent = '';
-                            status.className = 'status';
-                        }
-                    }, 2000);
+                    showToast(translations[currentLang].statusCopied, 'success');
                 } catch (fallbackError) {
-                    status.textContent = '❌ 复制失败';
-                    status.className = 'status error';
+                    showToast(translations[currentLang].statusCopyFailed, 'error');
                 }
             }
         });
 
+        // 上传文件
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadBtn.addEventListener('click', () => {
+            const currentLang = getCurrentLanguage();
+            const hasContent = textInput.value.trim().length > 0;
+
+            // 如果输入框有内容，先确认是否覆盖
+            if (hasContent) {
+                if (!confirm(translations[currentLang].confirmOverwrite)) {
+                    return; // 用户取消，不打开文件选择器
+                }
+            }
+
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const currentLang = getCurrentLanguage();
+            const fileName = file.name.toLowerCase();
+
+            // 检查文件类型
+            if (!fileName.endsWith('.txt') && !fileName.endsWith('.md')) {
+                showToast(translations[currentLang].importUnsupported, 'error');
+                fileInput.value = ''; // 清空文件选择
+                return;
+            }
+
+            // 检查文件大小（2MB = 2 * 1024 * 1024 bytes）
+            const maxSize = 2 * 1024 * 1024;
+            if (file.size > maxSize) {
+                showToast(translations[currentLang].importTooLarge, 'error');
+                fileInput.value = '';
+                return;
+            }
+
+            // 读取文件内容
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const content = event.target.result;
+                    textInput.value = content;
+                    updateButtonStates(); // 更新按钮状态
+                    showToast(translations[currentLang].importSuccess, 'success');
+                    fileInput.value = ''; // 清空文件选择，允许重复导入同一文件
+                } catch (error) {
+                    console.error('文件读取失败:', error);
+                    showToast(translations[currentLang].importError, 'error');
+                    fileInput.value = '';
+                }
+            };
+
+            reader.onerror = () => {
+                showToast(translations[currentLang].importError, 'error');
+                fileInput.value = '';
+            };
+
+            reader.readAsText(file, 'UTF-8');
+        });
+
         let lastSelectionStart = null;
+        let selectionButtonTimer = null;
 
         function updateSelectionButton() {
             const selectionStart = textInput.selectionStart;
             const selectionEnd = textInput.selectionEnd;
             const hasContent = textInput.value.trim().length > 0;
+
+            // 清除之前的定时器
+            if (selectionButtonTimer) {
+                clearTimeout(selectionButtonTimer);
+                selectionButtonTimer = null;
+            }
 
             if (!hasContent || selectionStart === null || selectionEnd === null) {
                 startFromSelectionBtn.classList.remove('show');
@@ -1158,13 +2803,25 @@
             if (selectionEnd > selectionStart) {
                 lastSelectionStart = selectionStart;
                 startFromSelectionBtn.classList.add('show');
+                // 3秒后自动隐藏
+                selectionButtonTimer = setTimeout(() => {
+                    startFromSelectionBtn.classList.remove('show');
+                }, 3000);
             } else {
                 lastSelectionStart = selectionStart;
                 startFromSelectionBtn.classList.add('show');
+                // 3秒后自动隐藏
+                selectionButtonTimer = setTimeout(() => {
+                    startFromSelectionBtn.classList.remove('show');
+                }, 3000);
             }
         }
 
         function hideSelectionButton() {
+            if (selectionButtonTimer) {
+                clearTimeout(selectionButtonTimer);
+                selectionButtonTimer = null;
+            }
             startFromSelectionBtn.classList.remove('show');
         }
 
@@ -1184,10 +2841,10 @@
         });
 
         startFromSelectionBtn.addEventListener('click', () => {
+            const currentLang = getCurrentLanguage();
             const sourceText = textInput.value;
             if (!sourceText.trim()) {
-                status.textContent = '⚠️ 请输入要朗读的文本';
-                status.className = 'status error';
+                showToast(translations[currentLang].statusEmpty, 'error');
                 return;
             }
 
@@ -1195,8 +2852,8 @@
             const textToSpeak = sourceText.slice(startIndex);
 
             startSpeech(textToSpeak, {
-                errorMessage: '⚠️ 请输入要朗读的文本',
-                startMessage: '🔊 从选定位置开始朗读...'
+                errorMessage: translations[currentLang].statusEmpty,
+                startMessage: translations[currentLang].statusFromSelection
             });
 
             textInput.focus();
@@ -1206,6 +2863,7 @@
         // 更新按钮状态
         function updateButtonStates() {
             const hasContent = textInput.value.trim().length > 0;
+            speakBtn.disabled = !hasContent;
             copyBtn.disabled = !hasContent;
             clearBtn.disabled = !hasContent;
         }
@@ -1218,17 +2876,11 @@
 
         // 清空文本
         clearBtn.addEventListener('click', () => {
+            const currentLang = getCurrentLanguage();
             textInput.value = '';
             textInput.focus();
-            status.textContent = '';
-            status.className = 'status';
-            updateButtonStates(); // 更新按钮状态
-        });
-
-        // 设置按钮事件
-        settingsBtn.addEventListener('click', () => {
-            loadVoicesToModal();
-            settingsModal.classList.add('show');
+            updateButtonStates();
+            showToast(translations[currentLang].statusCleared, 'success');
         });
 
         // 关闭模态框
@@ -1247,39 +2899,14 @@
 
         // 保存设置
         saveSettingsBtn.addEventListener('click', () => {
+            const currentLang = getCurrentLanguage();
             const settings = saveSettings();
             applyDefaultSettings(settings);
             loadVoices(); // 重新加载显示的语音
             closeModal();
-            
+
             // 显示保存成功提示
-            status.textContent = '✅ 设置已保存';
-            status.className = 'status active';
-            setTimeout(() => {
-                status.textContent = '';
-                status.className = 'status';
-            }, 2000);
-        });
-
-        // 全选/取消全选
-        selectAllBtn.addEventListener('click', () => {
-            voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                cb.checked = true;
-            });
-        });
-
-        deselectAllBtn.addEventListener('click', () => {
-            voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                cb.checked = false;
-            });
-        });
-
-        selectChineseBtn.addEventListener('click', () => {
-            voiceCheckboxList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                const lang = cb.closest('.voice-checkbox-item').querySelector('label').textContent;
-                const isChinese = lang.includes('zh') || lang.includes('CN') || lang.includes('TW');
-                cb.checked = isChinese;
-            });
+            showToast(translations[currentLang].statusSaved, 'success');
         });
 
         // 键盘快捷键：Ctrl+Enter 开始朗读，Esc 停止
@@ -1294,6 +2921,423 @@
                 } else {
                     resetBtn.click();
                 }
+            }
+        });
+
+        // ==================== 多语言支持函数 ====================
+
+        // 获取当前语言
+        function getCurrentLanguage() {
+            return localStorage.getItem('language') || 'zh';
+        }
+
+        // 检测浏览器
+        function isEdgeBrowser() {
+            return /Edg/.test(navigator.userAgent);
+        }
+
+        // 获取默认声音列表（第一次使用时）
+        function getDefaultVoices(voices) {
+            const isEdge = isEdgeBrowser();
+            const defaultVoices = [];
+
+            if (isEdge) {
+                // Edge浏览器：优先云健（男声），然后选择其他声音
+
+                // 1. 中文男声 - 必须是云健（Yunjian）
+                const chineseMale = voices.find(v => v.name.includes('Yunjian'));
+                if (chineseMale) defaultVoices.push(chineseMale);
+
+                // 2. 中文女声 - 选择一个女声（优先Yunxi, Xiaoxiao等）
+                const chineseFemale = voices.find(v =>
+                    (v.lang.includes('zh') || v.lang.includes('CN')) &&
+                    !v.name.includes('Yunjian') &&
+                    (v.name.includes('Yunxi') || v.name.includes('Xiaoxiao') || v.name.includes('Yunxia'))
+                ) || voices.find(v =>
+                    (v.lang.includes('zh') || v.lang.includes('CN')) &&
+                    !v.name.includes('Yunjian')
+                );
+                if (chineseFemale) defaultVoices.push(chineseFemale);
+
+                // 3. 英文男声
+                const englishMale = voices.find(v =>
+                    v.lang.includes('en') &&
+                    (v.name.includes('Guy') || v.name.includes('Ryan') || v.name.includes('Male')) &&
+                    (v.name.includes('Natural') || v.name.includes('Online'))
+                ) || voices.find(v =>
+                    v.lang.includes('en') &&
+                    (v.name.includes('Natural') || v.name.includes('Online'))
+                );
+                if (englishMale) defaultVoices.push(englishMale);
+
+                // 4. 英文女声
+                const englishFemale = voices.find(v =>
+                    v.lang.includes('en') &&
+                    (v.name.includes('Jenny') || v.name.includes('Aria') || v.name.includes('Female')) &&
+                    (v.name.includes('Natural') || v.name.includes('Online'))
+                ) || voices.find(v =>
+                    v.lang.includes('en') &&
+                    (v.name.includes('Natural') || v.name.includes('Online')) &&
+                    v.name !== englishMale?.name
+                );
+                if (englishFemale) defaultVoices.push(englishFemale);
+
+            } else {
+                // 其他浏览器：选择合适的男女声组合
+
+                // 1. 中文男声
+                const chineseMale = voices.find(v =>
+                    (v.lang.includes('zh') || v.lang.includes('CN')) &&
+                    (v.name.includes('Yunyang') || v.name.includes('Yunjian') || v.name.includes('Yunze') || v.name.includes('Male'))
+                ) || voices.find(v =>
+                    (v.lang.includes('zh') || v.lang.includes('CN'))
+                );
+                if (chineseMale) defaultVoices.push(chineseMale);
+
+                // 2. 中文女声
+                const chineseFemale = voices.find(v =>
+                    (v.lang.includes('zh') || v.lang.includes('CN')) &&
+                    v.name !== chineseMale?.name &&
+                    (v.name.includes('Xiaoxiao') || v.name.includes('Yunxi') || v.name.includes('Xiaoyi') || v.name.includes('Female'))
+                ) || voices.find(v =>
+                    (v.lang.includes('zh') || v.lang.includes('CN')) &&
+                    v.name !== chineseMale?.name
+                );
+                if (chineseFemale) defaultVoices.push(chineseFemale);
+
+                // 3. 英文男声
+                const englishMale = voices.find(v =>
+                    v.lang.includes('en') &&
+                    (v.name.includes('Guy') || v.name.includes('Ryan') || v.name.includes('Male'))
+                ) || voices.find(v => v.lang.includes('en'));
+                if (englishMale) defaultVoices.push(englishMale);
+
+                // 4. 英文女声
+                const englishFemale = voices.find(v =>
+                    v.lang.includes('en') &&
+                    v.name !== englishMale?.name &&
+                    (v.name.includes('Jenny') || v.name.includes('Aria') || v.name.includes('Female'))
+                ) || voices.find(v =>
+                    v.lang.includes('en') &&
+                    v.name !== englishMale?.name
+                );
+                if (englishFemale) defaultVoices.push(englishFemale);
+            }
+
+            return defaultVoices.filter(v => v !== undefined);
+        }
+
+        // 更新模态框内容
+        function updateModalContent(lang) {
+            // 关于模态框内容
+            const aboutContent = {
+                zh: `
+                    <h3>产品介绍</h3>
+                    <p>听稿是专为内容创作者设计的在线文字转语音工具，帮助你通过"听"的方式审核稿件，提高审稿效率。</p>
+
+                    <h3>核心功能</h3>
+                    <ul>
+                        <li><strong>在线朗读</strong>：无需下载，支持多种语音</li>
+                        <li><strong>选中位置朗读</strong>：从任意位置开始，无需从头听起</li>
+                        <li><strong>完全免费</strong>：无需注册登录</li>
+                    </ul>
+
+                    <h3>技术说明</h3>
+                    <p>本工具基于 <strong>Web Speech API</strong>（W3C 开放标准）实现。<strong>所有语音合成在浏览器本地完成，文本内容不会上传到我们的服务器。</strong></p>
+                    <p>推荐使用 <strong>Microsoft Edge 浏览器</strong>以获得更自然的语音效果。</p>
+
+                    <h3>免责声明</h3>
+                    <ul>
+                        <li><strong>语音服务提供方：</strong>语音由您的浏览器提供（如 Edge、Chrome 等），我们仅调用浏览器 API</li>
+                        <li><strong>服务质量：</strong>语音质量和可用性取决于浏览器，我们不对此承担责任</li>
+                        <li><strong>用户责任：</strong>请勿输入违法、侵权或不当内容</li>
+                    </ul>
+
+                    <h3>知识产权</h3>
+                    <p>Web Speech API 是开放标准，可供任何网站免费使用。语音合成由浏览器厂商提供，相关权利归各厂商所有。<strong>本工具不存储、录制或分发任何语音文件。</strong></p>
+                `,
+                en: `
+                    <h3>Product Introduction</h3>
+                    <p>HearCheck is an online text-to-speech tool designed for content creators, helping you review drafts by listening to improve proofreading efficiency.</p>
+
+                    <h3>Core Features</h3>
+                    <ul>
+                        <li><strong>Online Reading</strong>: No download required, multiple voices supported</li>
+                        <li><strong>Start from Selection</strong>: Begin from any position, no need to start over</li>
+                        <li><strong>Completely Free</strong>: No registration required</li>
+                    </ul>
+
+                    <h3>Technical Notes</h3>
+                    <p>This tool is based on <strong>Web Speech API</strong> (W3C open standard). <strong>All speech synthesis is done locally in your browser, and text content is never uploaded to our servers.</strong></p>
+                    <p>We recommend using <strong>Microsoft Edge browser</strong> for more natural voice quality.</p>
+
+                    <h3>Disclaimer</h3>
+                    <ul>
+                        <li><strong>Voice Service Provider:</strong> Voices are provided by your browser (Edge, Chrome, etc.), we only call browser APIs</li>
+                        <li><strong>Service Quality:</strong> Voice quality and availability depend on your browser, we are not responsible for this</li>
+                        <li><strong>User Responsibility:</strong> Do not enter illegal, infringing, or inappropriate content</li>
+                    </ul>
+
+                    <h3>Intellectual Property</h3>
+                    <p>Web Speech API is an open standard that any website can use for free. Speech synthesis is provided by browser vendors, and related rights belong to each vendor. <strong>This tool does not store, record, or distribute any audio files.</strong></p>
+                `
+            };
+
+            // 联系我们模态框内容
+            const contactContent = {
+                zh: `
+                    <p>感谢您使用听稿！如果您有任何问题、建议或反馈，欢迎通过以下方式联系我们：</p>
+
+                    <h3>电子邮件</h3>
+                    <p>📧 <a href="mailto:lijz1750@gmail.com">lijz1750@gmail.com</a></p>
+
+                    <p>我们会尽快回复您的邮件。您的反馈对我们非常重要，帮助我们不断改进产品！</p>
+                `,
+                en: `
+                    <p>Thank you for using HearCheck! If you have any questions, suggestions, or feedback, please feel free to contact us:</p>
+
+                    <h3>Email</h3>
+                    <p>📧 <a href="mailto:lijz1750@gmail.com">lijz1750@gmail.com</a></p>
+
+                    <p>We will reply to your email as soon as possible. Your feedback is very important to us and helps us continuously improve our product!</p>
+                `
+            };
+
+            // 隐私政策模态框内容
+            const privacyContent = {
+                zh: `
+                    <p><strong>最后更新日期：2026年5月</strong></p>
+                    <p>欢迎使用听稿。我们重视并尊重您的隐私。本隐私政策说明了我们如何处理您的信息。</p>
+
+                    <h3>1. 信息收集</h3>
+                    <p><strong>我们不收集您的文本内容。</strong>听稿不会收集、存储、传输或上传您输入的任何文本内容。所有文字转语音的处理都在您的浏览器本地完成，文本内容不会离开您的设备。</p>
+
+                    <h3>2. 本地存储</h3>
+                    <p>我们仅在您的浏览器本地保存以下设置（语音选择、语速/音调/音量、界面语言、输入框高度）。<strong>这些数据存储在您的设备上，我们无法访问。</strong></p>
+
+                    <h3>3. 第三方服务</h3>
+                    <p><strong>重要：</strong>语音合成由您的浏览器提供（如 Edge、Chrome 等）。<strong>您的文本可能被发送到浏览器厂商的服务器进行处理，我们无法控制他们如何处理这些数据。</strong></p>
+                    <p>如关注隐私，请查阅：<a href="https://privacy.microsoft.com/" target="_blank" rel="noopener">Microsoft 隐私声明</a> | <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a></p>
+
+                    <h3>4. 数据安全</h3>
+                    <p>文本内容不会传输到我们的服务器。我们不使用 Cookies、不使用分析工具、不追踪用户行为、不收集个人信息、不与第三方共享数据。</p>
+
+                    <h3>5. 免责声明</h3>
+                    <p><strong>我们不对以下内容承担责任：</strong></p>
+                    <ul>
+                        <li>浏览器厂商对您文本的处理方式</li>
+                        <li>语音合成的质量或可用性</li>
+                        <li>因使用本服务产生的任何损失</li>
+                    </ul>
+                `,
+                en: `
+                    <p><strong>Last Updated: May 2026</strong></p>
+                    <p>Welcome to HearCheck. We value and respect your privacy. This privacy policy explains how we handle your information.</p>
+
+                    <h3>1. Information Collection</h3>
+                    <p><strong>We do not collect your text content.</strong> HearCheck does not collect, store, transmit, or upload any text content you enter. All text-to-speech processing is done locally in your browser, and your text content never leaves your device.</p>
+
+                    <h3>2. Local Storage</h3>
+                    <p>We only save the following settings locally in your browser (voice selection, rate/pitch/volume, interface language, textarea height). <strong>This data is stored on your device, and we cannot access it.</strong></p>
+
+                    <h3>3. Third-Party Services</h3>
+                    <p><strong>Important:</strong> Speech synthesis is provided by your browser (Edge, Chrome, etc.). <strong>Your text may be sent to the browser vendor's servers for processing, and we have no control over how they handle this data.</strong></p>
+                    <p>If concerned about privacy, please review: <a href="https://privacy.microsoft.com/" target="_blank" rel="noopener">Microsoft Privacy Statement</a> | <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></p>
+
+                    <h3>4. Data Security</h3>
+                    <p>Text content is not transmitted to our servers. We do not use Cookies, do not use analytics tools, do not track user behavior, do not collect personal information, and do not share data with third parties.</p>
+
+                    <h3>5. Disclaimer</h3>
+                    <p><strong>We are not responsible for:</strong></p>
+                    <ul>
+                        <li>How browser vendors process your text</li>
+                        <li>The quality or availability of speech synthesis</li>
+                        <li>Any losses resulting from using this service</li>
+                    </ul>
+                `
+            };
+
+            // 更新内容
+            document.getElementById('aboutModalContent').innerHTML = aboutContent[lang];
+            document.getElementById('contactModalContent').innerHTML = contactContent[lang];
+            document.getElementById('privacyModalContent').innerHTML = privacyContent[lang];
+        }
+
+        // 显示浏览器提示
+        function showBrowserTip(lang) {
+            const browserTip = document.getElementById('browserTip');
+            const browserTipText = document.getElementById('browserTipText');
+            const browserTipVoice = document.getElementById('browserTipVoice');
+            const browserTipVoiceText = document.getElementById('browserTipVoiceText');
+
+            if (lang === 'zh' && !isEdgeBrowser()) {
+                browserTipText.textContent = translations[lang].browserTip;
+                browserTip.classList.add('show');
+            } else {
+                browserTip.classList.remove('show');
+            }
+
+            // 语音选择区域的提示（非Edge浏览器显示）
+            if (!isEdgeBrowser()) {
+                browserTipVoiceText.textContent = translations[lang].browserTipVoice;
+                browserTipVoice.classList.add('show');
+            } else {
+                browserTipVoice.classList.remove('show');
+            }
+        }
+
+        // 设置语言
+        function setLanguage(lang) {
+            localStorage.setItem('language', lang);
+
+            // 更新 HTML lang 属性
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 更新下拉菜单选中状态
+            document.getElementById('languageSelect').value = lang;
+
+            // 更新页面标题
+            document.querySelector('[data-i18n="pageTitle"]').textContent = translations[lang].pageTitle;
+
+            // 更新 textarea placeholder
+            textInput.placeholder = translations[lang].textareaPlaceholder;
+
+            // 更新按钮文本
+            document.getElementById('startFromSelectionBtn').textContent = translations[lang].startFromSelection;
+            document.getElementById('uploadBtn').textContent = translations[lang].uploadBtn;
+            document.getElementById('speakBtn').textContent = translations[lang].speakBtn;
+            document.getElementById('resetBtn').textContent = translations[lang].stopBtn;
+            document.getElementById('copyBtn').textContent = translations[lang].copyBtn;
+            document.getElementById('clearBtn').textContent = translations[lang].clearBtn;
+
+            // 更新语音选择标签
+            const voiceLabelElement = document.querySelector('.setting-group label');
+            if (voiceLabelElement) {
+                const voiceLabelSpan = voiceLabelElement.querySelector('[data-i18n="voiceLabel"]');
+                const voiceHintSpan = voiceLabelElement.querySelector('[data-i18n="voiceLabelHint"]');
+                if (voiceLabelSpan) voiceLabelSpan.textContent = translations[lang].voiceLabel;
+                if (voiceHintSpan) voiceHintSpan.textContent = translations[lang].voiceLabelHint;
+            }
+
+            // 更新设置模态框
+            document.querySelector('.modal-header h2').textContent = translations[lang].settingsTitle;
+            document.querySelector('.modal-setting-group label').textContent = translations[lang].voiceDisplayLabel;
+
+            // 更新语言列表面板
+            if (languageListPanel && availableLanguages.size > 0) {
+                initializeLanguageListPanel();
+            }
+
+            // 更新"全选当前"和"全部取消"按钮文字
+            if (selectAllCurrentBtn) {
+                selectAllCurrentBtn.textContent = translations[lang].selectAllCurrent;
+            }
+            if (deselectAllCurrentBtn) {
+                deselectAllCurrentBtn.textContent = translations[lang].deselectAllCurrent;
+            }
+
+            // 更新默认设置标签
+            const settingLabels = document.querySelectorAll('.default-setting-item label');
+            settingLabels[0].textContent = translations[lang].defaultRate;
+            settingLabels[1].textContent = translations[lang].defaultPitch;
+            settingLabels[2].textContent = translations[lang].defaultVolume;
+
+            document.getElementById('saveSettingsBtn').textContent = translations[lang].saveSettings;
+            document.getElementById('cancelSettingsBtn').textContent = translations[lang].cancelSettings;
+
+            // 更新 meta 标签
+            document.title = translations[lang].metaTitle;
+            document.querySelector('meta[name="description"]').content = translations[lang].metaDescription;
+
+            // 更新页脚
+            document.getElementById('footerCopyright').textContent = translations[lang].footerCopyright;
+            document.getElementById('aboutLink').textContent = translations[lang].footerAbout;
+            document.getElementById('contactLink').textContent = translations[lang].footerContact;
+            document.getElementById('privacyLink').textContent = translations[lang].footerPrivacy;
+
+            // 更新模态框标题
+            document.getElementById('aboutModalTitle').textContent = translations[lang].aboutModalTitle;
+            document.getElementById('contactModalTitle').textContent = translations[lang].contactModalTitle;
+            document.getElementById('privacyModalTitle').textContent = translations[lang].privacyModalTitle;
+
+            // 更新右键菜单
+            document.getElementById('contextMenuRemove').textContent = translations[lang].contextMenuRemove;
+
+            // 更新模态框内容
+            updateModalContent(lang);
+
+            // 显示浏览器提示
+            showBrowserTip(lang);
+
+            // 重新加载语音列表（根据语言过滤）
+            loadVoices();
+        }
+
+        // 语言切换事件
+        document.getElementById('languageSelect').addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+
+        // 页面加载时应用保存的语言
+        setLanguage(getCurrentLanguage());
+
+        // 关于模态框
+        const aboutModal = document.getElementById('aboutModal');
+        const aboutLink = document.getElementById('aboutLink');
+        const closeAboutBtn = document.getElementById('closeAboutBtn');
+
+        aboutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            aboutModal.classList.add('show');
+        });
+
+        closeAboutBtn.addEventListener('click', () => {
+            aboutModal.classList.remove('show');
+        });
+
+        aboutModal.addEventListener('click', (e) => {
+            if (e.target === aboutModal) {
+                aboutModal.classList.remove('show');
+            }
+        });
+
+        // 联系我们模态框
+        const contactModal = document.getElementById('contactModal');
+        const contactLink = document.getElementById('contactLink');
+        const closeContactBtn = document.getElementById('closeContactBtn');
+
+        contactLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactModal.classList.add('show');
+        });
+
+        closeContactBtn.addEventListener('click', () => {
+            contactModal.classList.remove('show');
+        });
+
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.classList.remove('show');
+            }
+        });
+
+        // 隐私政策模态框
+        const privacyModal = document.getElementById('privacyModal');
+        const privacyLink = document.getElementById('privacyLink');
+        const closePrivacyBtn = document.getElementById('closePrivacyBtn');
+
+        privacyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyModal.classList.add('show');
+        });
+
+        closePrivacyBtn.addEventListener('click', () => {
+            privacyModal.classList.remove('show');
+        });
+
+        privacyModal.addEventListener('click', (e) => {
+            if (e.target === privacyModal) {
+                privacyModal.classList.remove('show');
             }
         });
     </script>
